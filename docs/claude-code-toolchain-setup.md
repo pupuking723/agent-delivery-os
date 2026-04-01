@@ -273,6 +273,12 @@ This command should:
 - generate the minimum artifact set
 - give Claude Code a stable starting point before implementation
 
+For GitHub-backed repositories, also keep labels in sync:
+
+```bash
+pnpm labels:sync -- --repo <owner/repo>
+```
+
 - `docs/prompt-pack/README.md`
 - `docs/prompt-pack/command-cheatsheet.md`
 - `docs/prompt-pack/session-kickoff.md`

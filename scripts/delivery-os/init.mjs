@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
+import { cwd } from 'node:process'
 import { fileURLToPath } from 'node:url'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..')
@@ -71,7 +72,7 @@ function templateRoot(lang) {
   return join(ROOT, lang === 'en' ? 'docs/templates' : 'docs/templates-zh')
 }
 
-function buildManifest({ title, mode, reason, lang, summary, outDir }) {
+function buildManifest({ title, mode, reason, lang, summary }) {
   return `# Delivery Kickoff
 
 - Title: ${title}
@@ -83,6 +84,64 @@ function buildManifest({ title, mode, reason, lang, summary, outDir }) {
 ## Generated Artifacts
 
 ${ARTIFACTS[mode].map(name => `- ${name}.md`).join('\n')}
+`
+}
+
+function buildMetadata({ title, summary, project, repo, issue, mode, reason, lang, outDir }) {
+  return {
+    title,
+    summary,
+    project: project || '',
+    repo: repo || '',
+    issue: issue || '',
+    mode,
+    modeLabel: MODES[mode],
+    reason,
+    language: lang,
+    outputDir: outDir,
+    createdAt: new Date().toISOString(),
+  }
+}
+
+function buildNextSteps({ mode, title, outDir }) {
+  const steps = {
+    flash: [
+      '补齐 `idea-brief.md`，收敛核心机会、目标用户和最小范围',
+      '把 `PRD.md` 和 `design-spec.md` 压缩到能支撑上线的最小深度',
+      '补 `implementation-plan.md`，确认最小验证和上线路径',
+      '发布前检查 `release-checklist.md`，上线后补第一条反馈',
+    ],
+    product: [
+      '先补 `project-profile.md`，锁定项目边界、命令和发布入口',
+      '在 `PRD.md` 和 `design-spec.md` 中写清本轮功能和验收标准',
+      '在 `implementation-plan.md` 和 `task-breakdown.md` 中拆出可执行任务',
+      '发布后将观察结果回写到 `iteration-log.md`',
+    ],
+    legacy: [
+      '先补 `project-profile.md`，记录技术栈、命令、部署和风险模块',
+      '补 `system-map.md`，把关键路径和上下游依赖梳理清楚',
+      '在 `implementation-plan.md` 和 `task-breakdown.md` 中缩小本轮修改边界',
+      '按 `release-checklist.md` 验证，并在需要时补上线后的 `iteration-log.md`',
+    ],
+  }
+
+  return `# Next Steps
+
+## Current Task
+
+- Title: ${title}
+- Mode: ${MODES[mode]}
+- Workspace: ${outDir}
+
+## Recommended Sequence
+
+${steps[mode].map(step => `- [ ] ${step}`).join('\n')}
+
+## Suggested Commands
+
+\`\`\`bash
+code "${outDir}"
+\`\`\`
 `
 }
 
@@ -100,12 +159,30 @@ function copyArtifacts({ lang, mode, outDir, dryRun }) {
   return files
 }
 
+function ensureOutputDir(outDir, force) {
+  if (!existsSync(outDir)) {
+    mkdirSync(outDir, { recursive: true })
+    return
+  }
+
+  const entries = readdirSync(outDir)
+  if (entries.length > 0 && !force) {
+    console.error(`Output directory is not empty: ${outDir}`)
+    console.error('Use --force to overwrite template files into an existing workspace.')
+    process.exit(1)
+  }
+}
+
 function main() {
   const args = parseArgs(process.argv.slice(2))
   const title = args.title || args.name
   const summary = args.summary || ''
   const lang = args.lang === 'en' ? 'en' : 'zh'
   const dryRun = Boolean(args['dry-run'])
+  const force = Boolean(args.force)
+  const project = args.project || ''
+  const repo = args.repo || ''
+  const issue = args.issue || ''
 
   if (!title) {
     console.error('Missing required argument: --title')
@@ -125,21 +202,27 @@ function main() {
   const outDir = resolve(args.out || join(ROOT, 'workspace', slug))
 
   if (!dryRun) {
-    mkdirSync(outDir, { recursive: true })
+    ensureOutputDir(outDir, force)
   }
 
   const files = copyArtifacts({ lang, mode: route.mode, outDir, dryRun })
   const manifestPath = join(outDir, 'README.md')
+  const metadataPath = join(outDir, 'kickoff.json')
+  const nextStepsPath = join(outDir, 'next-steps.md')
+  const metadata = buildMetadata({ title, summary, project, repo, issue, mode: route.mode, reason: route.reason, lang, outDir })
 
   if (!dryRun) {
-    writeFileSync(manifestPath, buildManifest({ title, mode: route.mode, reason: route.reason, lang, summary, outDir }))
+    writeFileSync(manifestPath, buildManifest({ title, mode: route.mode, reason: route.reason, lang, summary }))
+    writeFileSync(metadataPath, `${JSON.stringify(metadata, null, 2)}\n`)
+    writeFileSync(nextStepsPath, buildNextSteps({ mode: route.mode, title, outDir }))
   }
 
   console.log(`Mode: ${MODES[route.mode]}`)
   console.log(`Reason: ${route.reason}`)
   console.log(`Output: ${outDir}`)
+  console.log(`Working directory: ${cwd()}`)
   console.log('Files:')
-  for (const file of [manifestPath, ...files]) {
+  for (const file of [manifestPath, metadataPath, nextStepsPath, ...files]) {
     console.log(`- ${existsSync(file) || dryRun ? file : `${file} (missing)`}`)
   }
 }

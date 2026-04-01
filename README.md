@@ -27,6 +27,10 @@
   Claude Code prompt 包
 - `scripts/delivery-os/init.mjs`
   会根据任务描述自动判断模式并生成最小文档包
+- `scripts/github/sync-labels.mjs`
+  会把仓库标签同步到 GitHub
+- `examples/`
+  示例 workspace
 
 ## 快速开始
 
@@ -44,6 +48,12 @@ pnpm kickoff --title "团队邀请功能" --summary "已上线项目，需要新
 node scripts/delivery-os/init.mjs --title "团队邀请功能" --summary "已上线项目，需要新增邀请弹窗、角色分配和发布检查"
 ```
 
+同步 GitHub labels：
+
+```bash
+pnpm labels:sync -- --repo <owner/repo>
+```
+
 ## 推荐使用方式
 
 1. 把这个仓库作为母版仓库持续演进
@@ -54,20 +64,22 @@ node scripts/delivery-os/init.mjs --title "团队邀请功能" --summary "已上
 
 - Issue 模板在 `.github/ISSUE_TEMPLATE/`
 - PR 模板在 `.github/PULL_REQUEST_TEMPLATE.md`
+- Labels 配置在 `.github/labels.json`
 - 仓库初始化与发布说明在 [docs/repo/github-setup.md](/Users/mac/Desktop/other/全栈/docs/repo/github-setup.md)
+- 协作约束说明在 [docs/repo/collaboration-defaults.md](/Users/mac/Desktop/other/全栈/docs/repo/collaboration-defaults.md)
 
 ## 当前状态
 
-这是一个可用的 `v1.5` 版本：
+这是一个可用的 `v2` 版本：
 
 - 已有完整模板体系
 - 已有三模式工作流
 - 已有仓库级 issue/PR 入口
 - 已有 kickoff 脚本骨架
+- 已有 labels 同步脚本和 workspace 示例
 
 下一阶段重点是：
 
 - 把这套规则接进真实业务仓库
 - 让 issue -> kickoff -> 文档 -> 开发 -> 发布 形成默认路径
 - 继续把反馈、监控、发布自动化接进来
-

@@ -42,13 +42,15 @@ gh repo create <repo-name> --source=. --public --push
 
 ## 建议标签
 
-- `flash-launch`
-- `product-iteration`
-- `legacy-maintenance`
-- `docs`
-- `automation`
-- `templates`
-- `prompt-pack`
+标签定义已经放在：
+
+- [.github/labels.json](/Users/mac/Desktop/other/全栈/.github/labels.json)
+
+同步到 GitHub：
+
+```bash
+pnpm labels:sync -- --repo <owner/repo>
+```
 
 ## 发布前检查
 
@@ -56,7 +58,9 @@ gh repo create <repo-name> --source=. --public --push
 - `CONTRIBUTING.md` 已说明协作规则
 - `CLAUDE.md` 已说明 Claude Code 执行规则
 - `.github/ISSUE_TEMPLATE/` 与 `.github/PULL_REQUEST_TEMPLATE.md` 已就位
+- `.github/labels.json` 已就位并已同步到远端
 - `scripts/delivery-os/init.mjs` 可生成最小文档包
+- `examples/` 已提供 workspace 示例
 
 ## 许可证建议
 
@@ -65,4 +69,3 @@ gh repo create <repo-name> --source=. --public --push
 - 想让别人宽松使用：`MIT`
 - 想保留专利授权和更完整声明：`Apache-2.0`
 - 只想自己或团队内部使用：先保持私有，不必急着加公开许可证
-

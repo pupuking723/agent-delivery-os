@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "kickoff": "node scripts/delivery-os/init.mjs",
-    "kickoff:dry": "node scripts/delivery-os/init.mjs --dry-run"
+    "kickoff:dry": "node scripts/delivery-os/init.mjs --dry-run",
+    "labels:sync": "node scripts/github/sync-labels.mjs"
   }
 }
-

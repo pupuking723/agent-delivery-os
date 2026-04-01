@@ -1,0 +1,13 @@
+{
+  "title": "团队邀请功能",
+  "summary": "已上线项目，需要新增邀请弹窗、角色分配和上线检查",
+  "project": "airi-web",
+  "repo": "pupuking723/agent-delivery-os",
+  "issue": "demo-001",
+  "mode": "product",
+  "modeLabel": "Product Iteration",
+  "reason": "matched product keyword: 新增",
+  "language": "zh",
+  "outputDir": "examples/workspace-product-iteration",
+  "createdAt": "2026-04-02T18:00:00.000Z"
+}

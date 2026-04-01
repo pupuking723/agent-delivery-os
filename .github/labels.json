@@ -1,0 +1,42 @@
+[
+  {
+    "name": "flash-launch",
+    "color": "fbca04",
+    "description": "0-to-1 speed-focused launch work"
+  },
+  {
+    "name": "product-iteration",
+    "color": "0e8a16",
+    "description": "Feature growth and optimization for a live product"
+  },
+  {
+    "name": "legacy-maintenance",
+    "color": "b60205",
+    "description": "Safe maintenance for legacy or vibe-coded systems"
+  },
+  {
+    "name": "docs",
+    "color": "1d76db",
+    "description": "Documentation changes"
+  },
+  {
+    "name": "automation",
+    "color": "5319e7",
+    "description": "Automation, scripts, and workflow wiring"
+  },
+  {
+    "name": "templates",
+    "color": "c5def5",
+    "description": "Template changes"
+  },
+  {
+    "name": "prompt-pack",
+    "color": "bfd4f2",
+    "description": "Prompt pack updates"
+  },
+  {
+    "name": "workflow",
+    "color": "d4c5f9",
+    "description": "Workflow and state machine updates"
+  }
+]
