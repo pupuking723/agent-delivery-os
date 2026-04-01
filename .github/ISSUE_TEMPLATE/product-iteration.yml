@@ -1,0 +1,40 @@
+name: Product Iteration
+description: 用于已上线产品的功能迭代和优化
+title: "[Product Iteration] "
+labels:
+  - product-iteration
+body:
+  - type: input
+    id: project
+    attributes:
+      label: 项目名
+      placeholder: 例如 airi-web
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 当前问题
+      description: 当前产品里哪里不够好
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: 计划改动
+      description: 这轮准备新增什么或优化什么
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: 指标或反馈
+      description: 相关数据、用户反馈、业务背景
+  - type: textarea
+    id: validation
+    attributes:
+      label: 验证与上线
+      description: 需要哪些测试、灰度、回滚手段
+    validations:
+      required: true
+

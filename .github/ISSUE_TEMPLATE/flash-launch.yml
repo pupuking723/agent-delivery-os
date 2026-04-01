@@ -1,0 +1,41 @@
+name: Flash Launch
+description: 用于 0 到 1 的快速上线需求
+title: "[Flash Launch] "
+labels:
+  - flash-launch
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: 核心想法
+      description: 你想快速验证什么机会
+      placeholder: 一句话描述想法和要抢的窗口
+    validations:
+      required: true
+  - type: textarea
+    id: users
+    attributes:
+      label: 目标用户
+      description: 谁最先会使用它
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: 最小范围
+      description: 第一版只做什么，不做什么
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收标准
+      description: 什么结果算可以上线
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: 风险与约束
+      description: 时间、依赖、预算、合规、上线风险
+

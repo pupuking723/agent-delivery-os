@@ -1,0 +1,42 @@
+name: Legacy Maintenance
+description: 用于老项目、接手项目或 vibe coding 项目的安全维护
+title: "[Legacy Maintenance] "
+labels:
+  - legacy-maintenance
+body:
+  - type: input
+    id: project
+    attributes:
+      label: 项目名
+      placeholder: 例如 airi-desktop
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: 已知上下文
+      description: 当前知道什么，不知道什么
+    validations:
+      required: true
+  - type: textarea
+    id: target
+    attributes:
+      label: 本轮目标
+      description: 要修什么、加什么、确认什么
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: 风险区域
+      description: 哪些模块不敢动、哪些地方可能连锁影响
+    validations:
+      required: true
+  - type: textarea
+    id: baseline
+    attributes:
+      label: 最小验证基线
+      description: 改前改后至少要跑什么
+    validations:
+      required: true
+

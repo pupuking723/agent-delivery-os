@@ -1,0 +1,11 @@
+{
+  "name": "delivery-os",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "kickoff": "node scripts/delivery-os/init.mjs",
+    "kickoff:dry": "node scripts/delivery-os/init.mjs --dry-run"
+  }
+}
+
