@@ -286,6 +286,7 @@ pnpm kickoff:issue -- --repo <owner/repo> --issue <number>
 ```
 
 If the repository enables Delivery OS guardrails, adding a mode label to the issue should also trigger an automatic kickoff comment.
+It can also maintain a mode-specific artifact checklist comment on the issue.
 
 - `docs/prompt-pack/README.md`
 - `docs/prompt-pack/command-cheatsheet.md`
