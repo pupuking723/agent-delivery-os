@@ -31,6 +31,7 @@
 - 修改 `CLAUDE.md` 时，应同步检查 `docs/delivery-os/`
 - 修改脚本时，应至少给一个 dry run 或实跑结果
 - PR 会由 `.github/workflows/delivery-os-guardrails.yml` 检查模式标签和基础字段
+- PR 应显式填写 `Workspace` 和 `Artifact paths`
 - issue 带上模式标签后，仓库会自动评论对应的 kickoff 命令
 - issue 带上模式标签后，仓库还会自动生成一条按模式匹配的 artifact checklist 评论
 - PR 合并后，仓库会自动提醒补 `iteration-log.md`

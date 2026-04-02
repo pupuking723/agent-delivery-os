@@ -60,6 +60,7 @@ pnpm labels:sync -- --repo <owner/repo>
 - `.github/ISSUE_TEMPLATE/` 与 `.github/PULL_REQUEST_TEMPLATE.md` 已就位
 - `.github/labels.json` 已就位并已同步到远端
 - `.github/workflows/delivery-os-guardrails.yml` 已启用
+- PR 模板已要求填写 `Workspace` 与 `Artifact paths`
 - `scripts/delivery-os/init.mjs` 可生成最小文档包
 - `scripts/delivery-os/from-issue.mjs` 可从 issue 生成 workspace
 - issue 在带上模式标签后会收到自动 kickoff 评论

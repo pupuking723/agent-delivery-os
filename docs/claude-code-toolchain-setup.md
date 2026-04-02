@@ -288,6 +288,7 @@ pnpm kickoff:issue -- --repo <owner/repo> --issue <number>
 If the repository enables Delivery OS guardrails, adding a mode label to the issue should also trigger an automatic kickoff comment.
 It can also maintain a mode-specific artifact checklist comment on the issue.
 After a labeled PR is merged, it can also post an iteration-log follow-up reminder.
+The PR description should also include repo-relative `Workspace` and `Artifact paths` fields.
 
 - `docs/prompt-pack/README.md`
 - `docs/prompt-pack/command-cheatsheet.md`

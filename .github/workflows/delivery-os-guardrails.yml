@@ -27,6 +27,8 @@ jobs:
               { name: 'Mode', regex: /^-\s*Mode:\s*\S+/m },
               { name: 'Why', regex: /^-\s*Why:\s*\S+/m },
               { name: 'Scope', regex: /^-\s*Scope:\s*\S+/m },
+              { name: 'Workspace', regex: /^-\s*Workspace:\s*(workspace\/\S+|examples\/\S+|\S+)/m },
+              { name: 'Artifact paths', regex: /^-\s*Artifact paths:\s*(workspace\/\S+|examples\/\S+|docs\/\S+|\S+)/m },
               { name: 'Risk level', regex: /^-\s*Risk level:\s*\S+/m },
             ];
 

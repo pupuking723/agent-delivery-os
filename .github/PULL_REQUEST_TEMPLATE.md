@@ -3,6 +3,8 @@
 - Mode:
 - Why:
 - Scope:
+- Workspace:
+- Artifact paths:
 
 ## Required Artifacts
 

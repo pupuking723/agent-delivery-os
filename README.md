@@ -53,6 +53,7 @@ pnpm kickoff:issue -- --repo <owner/repo> --issue <number>
 如果 issue 已经带上模式标签，仓库会自动评论这条命令。
 同时也会自动生成一条按模式整理的 artifact checklist 评论。
 PR 合并后，仓库还会自动提醒补 `iteration-log.md`。
+PR 本身也应显式填写 `Workspace` 和 `Artifact paths`，把代码变更和交付产物绑定起来。
 
 如果不装 `pnpm`，也可以直接用：
 
