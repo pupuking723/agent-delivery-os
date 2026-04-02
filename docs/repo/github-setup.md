@@ -65,6 +65,7 @@ pnpm labels:sync -- --repo <owner/repo>
 - `scripts/delivery-os/from-issue.mjs` 可从 issue 生成 workspace
 - issue 在带上模式标签后会收到自动 kickoff 评论
 - issue 在带上模式标签后会收到自动 artifact checklist 评论
+- PR 合并后会按 `Artifact paths` 自动更新 artifact checklist
 - PR 合并后会收到自动 iteration-log 提醒
 - `examples/` 已提供 workspace 示例
 

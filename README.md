@@ -54,6 +54,7 @@ pnpm kickoff:issue -- --repo <owner/repo> --issue <number>
 同时也会自动生成一条按模式整理的 artifact checklist 评论。
 PR 合并后，仓库还会自动提醒补 `iteration-log.md`。
 PR 本身也应显式填写 `Workspace` 和 `Artifact paths`，把代码变更和交付产物绑定起来。
+如果 `Artifact paths` 填得准确，issue checklist 会在 PR 合并后自动勾掉对应产物项。
 
 如果不装 `pnpm`，也可以直接用：
 
@@ -90,7 +91,7 @@ pnpm labels:sync -- --repo <owner/repo>
 - 已有三模式工作流
 - 已有仓库级 issue/PR 入口
 - 已有 issue 驱动的 kickoff 脚本
-- 已有 labels 同步脚本、自动 kickoff 评论、artifact checklist、merge 后 iteration-log 提醒、guardrails workflow 和 workspace 示例
+- 已有 labels 同步脚本、自动 kickoff 评论、artifact checklist、merge 后自动勾选产物项、iteration-log 提醒、guardrails workflow 和 workspace 示例
 
 下一阶段重点是：
 

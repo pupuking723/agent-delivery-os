@@ -34,4 +34,5 @@
 - PR 应显式填写 `Workspace` 和 `Artifact paths`
 - issue 带上模式标签后，仓库会自动评论对应的 kickoff 命令
 - issue 带上模式标签后，仓库还会自动生成一条按模式匹配的 artifact checklist 评论
+- PR 合并后，issue checklist 会按 `Artifact paths` 自动勾选对应产物项
 - PR 合并后，仓库会自动提醒补 `iteration-log.md`

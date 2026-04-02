@@ -65,6 +65,46 @@ jobs:
             };
             const iterationRequired = new Set(['flash-launch', 'product-iteration']);
             const marker = '<!-- delivery-os-iteration-reminder -->';
+            const checklistMarker = '<!-- delivery-os-checklist -->';
+
+            function inferArtifactsFromPrBody(body = '') {
+              const match = body.match(/^-\\s*Artifact paths:\\s*(.+)$/m);
+              if (!match) {
+                return new Set();
+              }
+
+              const rawPaths = match[1]
+                .split(',')
+                .map(item => item.trim())
+                .filter(Boolean);
+
+              const inferred = new Set();
+              for (const path of rawPaths) {
+                const fileName = path.split('/').pop() || '';
+                const artifactName = fileName.replace(/\\.md$/i, '');
+                if (!artifactName) {
+                  continue;
+                }
+
+                if (artifactName.toLowerCase() === 'prd') {
+                  inferred.add('PRD');
+                }
+                else {
+                  inferred.add(artifactName);
+                }
+              }
+
+              return inferred;
+            }
+
+            function mergeChecklistBody(previousBody = '', inferredArtifacts) {
+              return previousBody.replace(/- \\[( |x)\\] `([^`]+)`/g, (_, mark, artifactName) => {
+                if (mark === 'x' || inferredArtifacts.has(artifactName)) {
+                  return `- [x] \`${artifactName}\``;
+                }
+                return `- [ ] \`${artifactName}\``;
+              });
+            }
 
             const prBody = [
               marker,
@@ -109,6 +149,7 @@ jobs:
             for (const match of (pr.body || '').matchAll(/#(\d+)/g)) {
               linkedIssueNumbers.add(Number(match[1]));
             }
+            const inferredArtifacts = inferArtifactsFromPrBody(pr.body || '');
 
             for (const issueNumber of linkedIssueNumbers) {
               const issueComments = await github.paginate(github.rest.issues.listComments, {
@@ -120,6 +161,10 @@ jobs:
               const existingIssueComment = issueComments.find(comment =>
                 comment.user?.type === 'Bot'
                 && comment.body?.includes(`${marker}:${pr.number}`),
+              );
+              const existingChecklistComment = issueComments.find(comment =>
+                comment.user?.type === 'Bot'
+                && comment.body?.includes(checklistMarker),
               );
               const issueBody = [
                 `${marker}:${pr.number}`,
@@ -144,6 +189,15 @@ jobs:
                   repo: context.repo.repo,
                   issue_number: issueNumber,
                   body: issueBody,
+                });
+              }
+
+              if (existingChecklistComment && inferredArtifacts.size > 0) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: existingChecklistComment.id,
+                  body: mergeChecklistBody(existingChecklistComment.body || '', inferredArtifacts),
                 });
               }
             }
