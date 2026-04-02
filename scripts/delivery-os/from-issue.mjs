@@ -47,6 +47,12 @@ function slugify(input) {
     .replace(/^-+|-+$/g, '') || 'delivery-task'
 }
 
+function workspaceSlug(issue) {
+  const base = slugify(issue.title || '')
+  const prefix = issue.number ? `${issue.number}-` : ''
+  return `${prefix}${base}`
+}
+
 function detectMode(text) {
   const normalized = text.toLowerCase()
   for (const keyword of MODE_KEYWORDS.legacy) {
@@ -134,7 +140,7 @@ function main() {
   const route = resolveMode(issue)
   const project = args.project || extractProject(issue.body || '', args.repo?.split('/')?.[1] || '')
   const summary = args.summary || summarizeBody(issue.body || issue.title)
-  const outDir = resolve(args.out || join(ROOT, 'workspace', slugify(issue.title)))
+  const outDir = resolve(args.out || join(ROOT, 'workspace', workspaceSlug(issue)))
 
   const initArgs = [
     INIT_SCRIPT,

@@ -285,6 +285,12 @@ To bootstrap directly from a GitHub issue:
 pnpm kickoff:issue -- --repo <owner/repo> --issue <number>
 ```
 
+For deterministic tracking, prefer a stable workspace path such as:
+
+```bash
+pnpm kickoff:issue -- --repo <owner/repo> --issue <number> --out workspace/<issue-number>-<slug>
+```
+
 If the repository enables Delivery OS guardrails, adding a mode label to the issue should also trigger an automatic kickoff comment.
 It can also maintain a mode-specific artifact checklist comment on the issue.
 After a labeled PR is merged, it can also post an iteration-log follow-up reminder.

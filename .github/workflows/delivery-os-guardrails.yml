@@ -215,6 +215,12 @@ jobs:
             const matchedModeLabel = modePriority.find(label => labels.includes(label));
             const kickoffMarker = '<!-- delivery-os-kickoff -->';
             const checklistMarker = '<!-- delivery-os-checklist -->';
+            const workspaceSlug = issue.title
+              .trim()
+              .toLowerCase()
+              .replace(/[^a-z0-9\u4e00-\u9fa5]+/gi, '-')
+              .replace(/^-+|-+$/g, '') || 'delivery-task';
+            const workspacePath = `workspace/${issue.number}-${workspaceSlug}`;
             const modeDisplay = {
               'flash-launch': 'Flash Launch',
               'product-iteration': 'Product Iteration',
@@ -296,10 +302,12 @@ jobs:
               ].join('\n');
             }
             else {
-              const command = `pnpm kickoff:issue -- --repo ${context.repo.owner}/${context.repo.repo} --issue ${issue.number}`;
+              const command = `pnpm kickoff:issue -- --repo ${context.repo.owner}/${context.repo.repo} --issue ${issue.number} --out ${workspacePath}`;
               body = [
                 kickoffMarker,
                 `Mode label detected: \`${matchedModeLabel}\``,
+                '',
+                `Suggested workspace path: \`${workspacePath}\``,
                 '',
                 'Use this command to generate the workspace for this issue:',
                 '```bash',

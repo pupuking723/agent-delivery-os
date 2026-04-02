@@ -55,6 +55,7 @@ pnpm kickoff:issue -- --repo <owner/repo> --issue <number>
 PR 合并后，仓库还会自动提醒补 `iteration-log.md`。
 PR 本身也应显式填写 `Workspace` 和 `Artifact paths`，把代码变更和交付产物绑定起来。
 如果 `Artifact paths` 填得准确，issue checklist 会在 PR 合并后自动勾掉对应产物项。
+默认 workspace 路径会稳定落到 `workspace/<issue-number>-<slug>`。
 
 如果不装 `pnpm`，也可以直接用：
 
