@@ -2,6 +2,8 @@
 
 一套面向 Claude Code 的交付操作系统，用来把“想法 -> 规格 -> 开发 -> 验证 -> 发布 -> 反馈”变成可重复执行的流程。
 
+[English README](./README.en.md)
+
 ## 解决什么问题
 
 - `Flash Launch`
@@ -103,3 +105,7 @@ pnpm labels:sync -- --repo <owner/repo>
 - 把这套规则接进真实业务仓库
 - 让 issue -> kickoff -> 文档 -> 开发 -> 发布 形成默认路径
 - 继续把反馈、监控、发布自动化接进来
+
+## 许可证
+
+本仓库使用 [MIT License](/Users/mac/Desktop/other/全栈/LICENSE)。
