@@ -1,0 +1,73 @@
+name: Delivery OS Guardrails
+
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened, labeled, unlabeled]
+  issues:
+    types: [opened, edited, reopened, labeled, unlabeled]
+
+jobs:
+  pr_guardrails:
+    if: github.event_name == 'pull_request_target'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const body = context.payload.pull_request.body || '';
+            const labels = (context.payload.pull_request.labels || []).map(label => label.name);
+            const modeLabels = ['flash-launch', 'product-iteration', 'legacy-maintenance'];
+            const errors = [];
+
+            if (!labels.some(label => modeLabels.includes(label))) {
+              errors.push('PR must include one mode label: flash-launch, product-iteration, or legacy-maintenance.');
+            }
+
+            const requiredPatterns = [
+              { name: 'Mode', regex: /^-\s*Mode:\s*\S+/m },
+              { name: 'Why', regex: /^-\s*Why:\s*\S+/m },
+              { name: 'Scope', regex: /^-\s*Scope:\s*\S+/m },
+              { name: 'Risk level', regex: /^-\s*Risk level:\s*\S+/m },
+            ];
+
+            for (const required of requiredPatterns) {
+              if (!required.regex.test(body)) {
+                errors.push(`PR body is missing required field: ${required.name}.`);
+              }
+            }
+
+            if (errors.length > 0) {
+              core.setFailed(errors.join('\n'));
+            }
+
+  issue_guardrails:
+    if: github.event_name == 'issues'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const labels = (issue.labels || []).map(label => label.name);
+            const modeLabels = ['flash-launch', 'product-iteration', 'legacy-maintenance'];
+            const hasMode = labels.some(label => modeLabels.includes(label));
+
+            if (hasMode) {
+              return;
+            }
+
+            const body = [
+              'This issue is missing a Delivery OS mode label.',
+              '',
+              'Add one of these labels before implementation:',
+              '- `flash-launch`',
+              '- `product-iteration`',
+              '- `legacy-maintenance`',
+            ].join('\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body,
+            });

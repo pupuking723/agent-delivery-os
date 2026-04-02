@@ -30,3 +30,4 @@
 - kickoff 生成的 workspace 目录应该在 issue 或 PR 里可追踪
 - 修改 `CLAUDE.md` 时，应同步检查 `docs/delivery-os/`
 - 修改脚本时，应至少给一个 dry run 或实跑结果
+- PR 会由 `.github/workflows/delivery-os-guardrails.yml` 检查模式标签和基础字段

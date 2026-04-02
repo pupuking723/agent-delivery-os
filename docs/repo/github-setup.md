@@ -59,7 +59,9 @@ pnpm labels:sync -- --repo <owner/repo>
 - `CLAUDE.md` 已说明 Claude Code 执行规则
 - `.github/ISSUE_TEMPLATE/` 与 `.github/PULL_REQUEST_TEMPLATE.md` 已就位
 - `.github/labels.json` 已就位并已同步到远端
+- `.github/workflows/delivery-os-guardrails.yml` 已启用
 - `scripts/delivery-os/init.mjs` 可生成最小文档包
+- `scripts/delivery-os/from-issue.mjs` 可从 issue 生成 workspace
 - `examples/` 已提供 workspace 示例
 
 ## 许可证建议

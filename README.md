@@ -27,6 +27,8 @@
   Claude Code prompt 包
 - `scripts/delivery-os/init.mjs`
   会根据任务描述自动判断模式并生成最小文档包
+- `scripts/delivery-os/from-issue.mjs`
+  会从 GitHub issue 读取内容并生成 workspace
 - `scripts/github/sync-labels.mjs`
   会把仓库标签同步到 GitHub
 - `examples/`
@@ -40,6 +42,12 @@
 
 ```bash
 pnpm kickoff --title "团队邀请功能" --summary "已上线项目，需要新增邀请弹窗、角色分配和发布检查"
+```
+
+从 GitHub issue 直接生成 workspace：
+
+```bash
+pnpm kickoff:issue -- --repo <owner/repo> --issue <number>
 ```
 
 如果不装 `pnpm`，也可以直接用：
@@ -65,6 +73,7 @@ pnpm labels:sync -- --repo <owner/repo>
 - Issue 模板在 `.github/ISSUE_TEMPLATE/`
 - PR 模板在 `.github/PULL_REQUEST_TEMPLATE.md`
 - Labels 配置在 `.github/labels.json`
+- GitHub Action 守门规则在 `.github/workflows/delivery-os-guardrails.yml`
 - 仓库初始化与发布说明在 [docs/repo/github-setup.md](/Users/mac/Desktop/other/全栈/docs/repo/github-setup.md)
 - 协作约束说明在 [docs/repo/collaboration-defaults.md](/Users/mac/Desktop/other/全栈/docs/repo/collaboration-defaults.md)
 
@@ -75,8 +84,8 @@ pnpm labels:sync -- --repo <owner/repo>
 - 已有完整模板体系
 - 已有三模式工作流
 - 已有仓库级 issue/PR 入口
-- 已有 kickoff 脚本骨架
-- 已有 labels 同步脚本和 workspace 示例
+- 已有 issue 驱动的 kickoff 脚本
+- 已有 labels 同步脚本、guardrails workflow 和 workspace 示例
 
 下一阶段重点是：
 

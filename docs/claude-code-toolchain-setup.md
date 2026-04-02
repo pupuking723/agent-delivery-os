@@ -279,6 +279,12 @@ For GitHub-backed repositories, also keep labels in sync:
 pnpm labels:sync -- --repo <owner/repo>
 ```
 
+To bootstrap directly from a GitHub issue:
+
+```bash
+pnpm kickoff:issue -- --repo <owner/repo> --issue <number>
+```
+
 - `docs/prompt-pack/README.md`
 - `docs/prompt-pack/command-cheatsheet.md`
 - `docs/prompt-pack/session-kickoff.md`

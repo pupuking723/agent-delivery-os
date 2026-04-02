@@ -6,6 +6,7 @@
   "scripts": {
     "kickoff": "node scripts/delivery-os/init.mjs",
     "kickoff:dry": "node scripts/delivery-os/init.mjs --dry-run",
+    "kickoff:issue": "node scripts/delivery-os/from-issue.mjs",
     "labels:sync": "node scripts/github/sync-labels.mjs"
   }
 }

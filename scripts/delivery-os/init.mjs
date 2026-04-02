@@ -190,7 +190,7 @@ function main() {
   }
 
   const route = args.mode && args.mode !== 'auto'
-    ? { mode: args.mode, reason: 'explicit mode override' }
+    ? { mode: args.mode, reason: args.reason || 'explicit mode override' }
     : detectMode(`${title}\n${summary}`)
 
   if (!ARTIFACTS[route.mode]) {
