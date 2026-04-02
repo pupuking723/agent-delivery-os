@@ -6,6 +6,10 @@
 
 目标不是解释所有概念，而是告诉你这套系统在仓库里应该怎么跑。
 
+如果你想看一份已经整理好的展示样本，直接看：
+
+- [examples/demo-product-iteration/README.md](/Users/mac/Desktop/other/全栈/examples/demo-product-iteration/README.md)
+
 ## 适用场景
 
 - 你要在这个仓库里演练 Delivery OS
@@ -221,4 +225,3 @@ gh pr checks
 - 可检查的 artifact
 - 可追踪的验证
 - 可回写的迭代结果
-
