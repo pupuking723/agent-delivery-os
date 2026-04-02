@@ -38,3 +38,4 @@
 - issue 带上模式标签后，仓库还会自动生成一条按模式匹配的 artifact checklist 评论
 - PR 合并后，issue checklist 会按 `Artifact paths` 自动勾选对应产物项
 - PR 合并后，仓库会自动提醒补 `iteration-log.md`
+- 新成员接入时，先走 [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md) 的完整流程

@@ -84,6 +84,7 @@ pnpm labels:sync -- --repo <owner/repo>
 - GitHub Action 守门规则在 `.github/workflows/delivery-os-guardrails.yml`
 - 仓库初始化与发布说明在 [docs/repo/github-setup.md](/Users/mac/Desktop/other/全栈/docs/repo/github-setup.md)
 - 协作约束说明在 [docs/repo/collaboration-defaults.md](/Users/mac/Desktop/other/全栈/docs/repo/collaboration-defaults.md)
+- 端到端操作手册在 [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
 
 ## 当前状态
 
