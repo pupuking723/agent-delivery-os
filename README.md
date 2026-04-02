@@ -4,6 +4,22 @@
 
 [English README](./README.en.md)
 
+> Agent-first delivery operating system for repeatable product execution.
+
+适合三类场景：
+
+- 快速把想法上线验证市场
+- 持续迭代已上线产品
+- 安全维护老项目或 vibe coding 项目
+
+仓库内已经自带：
+
+- 三模式路由
+- issue -> workspace 自动化入口
+- PR guardrails
+- merge 后闭环提醒
+- 示例 workspace 与 demo flow pack
+
 ## 解决什么问题
 
 - `Flash Launch`

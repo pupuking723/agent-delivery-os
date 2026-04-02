@@ -8,6 +8,22 @@ into a repeatable workflow.
 
 [中文说明](./README.md)
 
+> Agent-first delivery operating system for repeatable product execution.
+
+Built for three common scenarios:
+
+- launching a new idea quickly
+- iterating on a live product
+- safely maintaining legacy or vibe-coded systems
+
+This repository already ships with:
+
+- three-mode routing
+- issue-to-workspace automation
+- PR guardrails
+- post-merge follow-up reminders
+- example workspaces and demo flow packs
+
 ## What It Solves
 
 - `Flash Launch`
@@ -88,4 +104,3 @@ This repository already includes:
 ## License
 
 This repository is licensed under the [MIT License](/Users/mac/Desktop/other/全栈/LICENSE).
-
