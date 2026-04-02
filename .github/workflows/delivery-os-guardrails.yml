@@ -2,13 +2,13 @@ name: Delivery OS Guardrails
 
 on:
   pull_request_target:
-    types: [opened, edited, synchronize, reopened, labeled, unlabeled]
+    types: [opened, edited, synchronize, reopened, labeled, unlabeled, closed]
   issues:
     types: [opened, edited, reopened, labeled, unlabeled]
 
 jobs:
   pr_guardrails:
-    if: github.event_name == 'pull_request_target'
+    if: github.event_name == 'pull_request_target' && github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v8
@@ -38,6 +38,112 @@ jobs:
 
             if (errors.length > 0) {
               core.setFailed(errors.join('\n'));
+            }
+
+  post_merge_followup:
+    if: github.event_name == 'pull_request_target' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const labels = (pr.labels || []).map(label => label.name);
+            const modePriority = ['legacy-maintenance', 'product-iteration', 'flash-launch'];
+            const matchedModeLabel = modePriority.find(label => labels.includes(label));
+
+            if (!matchedModeLabel) {
+              return;
+            }
+
+            const modeDisplay = {
+              'flash-launch': 'Flash Launch',
+              'product-iteration': 'Product Iteration',
+              'legacy-maintenance': 'Legacy Maintenance',
+            };
+            const iterationRequired = new Set(['flash-launch', 'product-iteration']);
+            const marker = '<!-- delivery-os-iteration-reminder -->';
+
+            const prBody = [
+              marker,
+              `Merged under \`${modeDisplay[matchedModeLabel]}\`.`,
+              '',
+              'Post-merge follow-up:',
+              iterationRequired.has(matchedModeLabel)
+                ? '- Update `iteration-log.md` with shipped change, results, and next action.'
+                : '- If this change shipped or affected runtime behavior, update `iteration-log.md`.',
+              '- Verify release notes, metrics, and rollback status if applicable.',
+            ].join('\n');
+
+            const prComments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              per_page: 100,
+            });
+            const existingPrComment = prComments.find(comment =>
+              comment.user?.type === 'Bot'
+              && comment.body?.includes(marker),
+            );
+
+            if (existingPrComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existingPrComment.id,
+                body: prBody,
+              });
+            }
+            else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                body: prBody,
+              });
+            }
+
+            const linkedIssueNumbers = new Set();
+            for (const match of (pr.body || '').matchAll(/#(\d+)/g)) {
+              linkedIssueNumbers.add(Number(match[1]));
+            }
+
+            for (const issueNumber of linkedIssueNumbers) {
+              const issueComments = await github.paginate(github.rest.issues.listComments, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                per_page: 100,
+              });
+              const existingIssueComment = issueComments.find(comment =>
+                comment.user?.type === 'Bot'
+                && comment.body?.includes(`${marker}:${pr.number}`),
+              );
+              const issueBody = [
+                `${marker}:${pr.number}`,
+                `PR #${pr.number} was merged for this issue under \`${modeDisplay[matchedModeLabel]}\`.`,
+                '',
+                iterationRequired.has(matchedModeLabel)
+                  ? 'Reminder: update `iteration-log.md` after release verification.'
+                  : 'Reminder: update `iteration-log.md` if this merged change shipped or changed runtime behavior.',
+              ].join('\n');
+
+              if (existingIssueComment) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: existingIssueComment.id,
+                  body: issueBody,
+                });
+              }
+              else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  body: issueBody,
+                });
+              }
             }
 
   issue_guardrails:
