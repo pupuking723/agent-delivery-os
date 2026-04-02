@@ -215,12 +215,36 @@ jobs:
             const matchedModeLabel = modePriority.find(label => labels.includes(label));
             const kickoffMarker = '<!-- delivery-os-kickoff -->';
             const checklistMarker = '<!-- delivery-os-checklist -->';
-            const workspaceSlug = issue.title
-              .trim()
-              .toLowerCase()
-              .replace(/[^a-z0-9\u4e00-\u9fa5]+/gi, '-')
-              .replace(/^-+|-+$/g, '') || 'delivery-task';
-            const workspacePath = `workspace/${issue.number}-${workspaceSlug}`;
+            function extractField(body, aliases, fallback = '') {
+              const lines = (body || '').split('\n');
+              for (let i = 0; i < lines.length; i += 1) {
+                const line = lines[i].trim();
+                if (aliases.some(alias => line === alias || line === `### ${alias}` || line.includes(alias))) {
+                  for (let j = i + 1; j < lines.length; j += 1) {
+                    const next = lines[j]?.trim();
+                    if (!next || next.startsWith('### ')) {
+                      continue;
+                    }
+                    return next.replace(/^-+\s*/, '');
+                  }
+                }
+              }
+              return fallback;
+            }
+            function slugify(input) {
+              return input
+                .trim()
+                .toLowerCase()
+                .replace(/[^a-z0-9\u4e00-\u9fa5]+/gi, '-')
+                .replace(/^-+|-+$/g, '') || 'delivery-task';
+            }
+            function sanitizeWorkspaceRoot(input) {
+              const root = (input || '').trim().replace(/^\.?\//, '').replace(/\/+$/g, '');
+              return root || 'workspace';
+            }
+            const project = extractField(issue.body || '', ['项目代号', '项目名', 'project'], context.repo.repo);
+            const workspaceRoot = sanitizeWorkspaceRoot(extractField(issue.body || '', ['Workspace 根目录', 'workspace root'], 'workspace'));
+            const workspacePath = `${workspaceRoot}/${issue.number}-${slugify(issue.title || '')}`;
             const modeDisplay = {
               'flash-launch': 'Flash Launch',
               'product-iteration': 'Product Iteration',
@@ -307,6 +331,8 @@ jobs:
                 kickoffMarker,
                 `Mode label detected: \`${matchedModeLabel}\``,
                 '',
+                `Project: \`${project}\``,
+                `Workspace root: \`${workspaceRoot}\``,
                 `Suggested workspace path: \`${workspacePath}\``,
                 '',
                 'Use this command to generate the workspace for this issue:',

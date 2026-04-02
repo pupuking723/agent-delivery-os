@@ -63,6 +63,7 @@ pnpm labels:sync -- --repo <owner/repo>
 - PR 模板已要求填写 `Workspace` 与 `Artifact paths`
 - `scripts/delivery-os/init.mjs` 可生成最小文档包
 - `scripts/delivery-os/from-issue.mjs` 可从 issue 生成 workspace
+- issue form 可填写 `项目代号` 与 `Workspace 根目录`
 - issue 在带上模式标签后会收到自动 kickoff 评论
 - issue 在带上模式标签后会收到自动 artifact checklist 评论
 - PR 合并后会按 `Artifact paths` 自动更新 artifact checklist

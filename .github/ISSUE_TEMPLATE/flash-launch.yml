@@ -4,6 +4,18 @@ title: "[Flash Launch] "
 labels:
   - flash-launch
 body:
+  - type: input
+    id: project
+    attributes:
+      label: 项目代号
+      description: 可选，用于标识这条需求属于哪个项目或产品线
+      placeholder: 例如 airi-labs
+  - type: input
+    id: workspace_root
+    attributes:
+      label: Workspace 根目录
+      description: 可选，默认是 workspace
+      placeholder: 例如 workspace 或 client-workspaces
   - type: textarea
     id: idea
     attributes:
@@ -38,4 +50,3 @@ body:
     attributes:
       label: 风险与约束
       description: 时间、依赖、预算、合规、上线风险
-

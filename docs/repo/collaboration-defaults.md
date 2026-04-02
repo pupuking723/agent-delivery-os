@@ -29,6 +29,7 @@
 - 新 issue 创建后，先补模式标签
 - kickoff 生成的 workspace 目录应该在 issue 或 PR 里可追踪
 - 对 issue 驱动的任务，优先使用 `workspace/<issue-number>-<slug>` 作为稳定路径
+- 多项目场景下，优先在 issue form 里填写 `项目代号` 和 `Workspace 根目录`
 - 修改 `CLAUDE.md` 时，应同步检查 `docs/delivery-os/`
 - 修改脚本时，应至少给一个 dry run 或实跑结果
 - PR 会由 `.github/workflows/delivery-os-guardrails.yml` 检查模式标签和基础字段

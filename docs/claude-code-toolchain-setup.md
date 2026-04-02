@@ -296,6 +296,7 @@ It can also maintain a mode-specific artifact checklist comment on the issue.
 After a labeled PR is merged, it can also post an iteration-log follow-up reminder.
 The PR description should also include repo-relative `Workspace` and `Artifact paths` fields.
 When `Artifact paths` are present, merged PRs can also auto-check matching artifact items on the linked issue checklist.
+Issue forms can also provide `Project` and `Workspace root` context to make generated workspace paths deterministic across multiple products.
 
 - `docs/prompt-pack/README.md`
 - `docs/prompt-pack/command-cheatsheet.md`

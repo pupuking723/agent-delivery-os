@@ -70,17 +70,25 @@ function detectMode(text) {
   return { mode: 'legacy', reason: 'defaulted to the highest-risk safe mode' }
 }
 
-function extractProject(body, fallback) {
+function extractField(body, aliases, fallback = '') {
   const lines = body.split('\n')
   for (let i = 0; i < lines.length; i += 1) {
     const line = lines[i].trim()
-    if (line.includes('项目名') || /^project$/i.test(line)) {
-      const next = lines[i + 1]?.trim()
-      if (next)
+    if (aliases.some(alias => line === alias || line === `### ${alias}` || line.includes(alias))) {
+      for (let j = i + 1; j < lines.length; j += 1) {
+        const next = lines[j]?.trim()
+        if (!next || next.startsWith('### '))
+          continue
         return next.replace(/^-+\s*/, '')
+      }
     }
   }
   return fallback
+}
+
+function sanitizeWorkspaceRoot(input) {
+  const root = (input || '').trim().replace(/^\.?\//, '').replace(/\/+$/g, '')
+  return root || 'workspace'
 }
 
 function summarizeBody(body) {
@@ -138,9 +146,10 @@ function main() {
   }
 
   const route = resolveMode(issue)
-  const project = args.project || extractProject(issue.body || '', args.repo?.split('/')?.[1] || '')
+  const project = args.project || extractField(issue.body || '', ['项目代号', '项目名', 'project'], args.repo?.split('/')?.[1] || '')
+  const workspaceRoot = sanitizeWorkspaceRoot(args['workspace-root'] || extractField(issue.body || '', ['Workspace 根目录', 'workspace root'], 'workspace'))
   const summary = args.summary || summarizeBody(issue.body || issue.title)
-  const outDir = resolve(args.out || join(ROOT, 'workspace', workspaceSlug(issue)))
+  const outDir = resolve(args.out || join(ROOT, workspaceRoot, workspaceSlug(issue)))
 
   const initArgs = [
     INIT_SCRIPT,

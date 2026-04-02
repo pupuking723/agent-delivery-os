@@ -7,10 +7,16 @@ body:
   - type: input
     id: project
     attributes:
-      label: 项目名
+      label: 项目代号
       placeholder: 例如 airi-web
     validations:
       required: true
+  - type: input
+    id: workspace_root
+    attributes:
+      label: Workspace 根目录
+      description: 可选，默认是 workspace
+      placeholder: 例如 workspace 或 client-workspaces
   - type: textarea
     id: problem
     attributes:
@@ -37,4 +43,3 @@ body:
       description: 需要哪些测试、灰度、回滚手段
     validations:
       required: true
-
