@@ -50,24 +50,60 @@ jobs:
             const issue = context.payload.issue;
             const labels = (issue.labels || []).map(label => label.name);
             const modeLabels = ['flash-launch', 'product-iteration', 'legacy-maintenance'];
-            const hasMode = labels.some(label => modeLabels.includes(label));
-
-            if (hasMode) {
-              return;
-            }
-
-            const body = [
-              'This issue is missing a Delivery OS mode label.',
-              '',
-              'Add one of these labels before implementation:',
-              '- `flash-launch`',
-              '- `product-iteration`',
-              '- `legacy-maintenance`',
-            ].join('\n');
-
-            await github.rest.issues.createComment({
+            const modePriority = ['legacy-maintenance', 'product-iteration', 'flash-launch'];
+            const matchedModeLabel = modePriority.find(label => labels.includes(label));
+            const marker = '<!-- delivery-os-kickoff -->';
+            const comments = await github.paginate(github.rest.issues.listComments, {
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issue.number,
-              body,
+              per_page: 100,
             });
+            const existing = comments.find(comment =>
+              comment.user?.type === 'Bot'
+              && comment.body?.includes(marker),
+            );
+
+            let body = '';
+
+            if (!matchedModeLabel) {
+              body = [
+                marker,
+                'This issue is missing a Delivery OS mode label.',
+                '',
+                'Add one of these labels before implementation:',
+                '- `flash-launch`',
+                '- `product-iteration`',
+                '- `legacy-maintenance`',
+              ].join('\n');
+            }
+            else {
+              const command = `pnpm kickoff:issue -- --repo ${context.repo.owner}/${context.repo.repo} --issue ${issue.number}`;
+              body = [
+                marker,
+                `Mode label detected: \`${matchedModeLabel}\``,
+                '',
+                'Use this command to generate the workspace for this issue:',
+                '```bash',
+                command,
+                '```',
+                'If you need to overwrite an existing workspace, append `--force`.',
+              ].join('\n');
+            }
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            }
+            else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body,
+              });
+            }

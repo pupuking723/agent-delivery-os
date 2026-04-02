@@ -285,6 +285,8 @@ To bootstrap directly from a GitHub issue:
 pnpm kickoff:issue -- --repo <owner/repo> --issue <number>
 ```
 
+If the repository enables Delivery OS guardrails, adding a mode label to the issue should also trigger an automatic kickoff comment.
+
 - `docs/prompt-pack/README.md`
 - `docs/prompt-pack/command-cheatsheet.md`
 - `docs/prompt-pack/session-kickoff.md`
