@@ -1,14 +1,17 @@
 # Delivery OS
 
-An agent-oriented delivery operating system for turning:
-
-`idea -> spec -> implementation -> validation -> release -> feedback`
-
-into a repeatable workflow.
+[![Release](https://img.shields.io/github/v/release/pupuking723/agent-delivery-os)](https://github.com/pupuking723/agent-delivery-os/releases/tag/v0.1.0)
+[![License](https://img.shields.io/github/license/pupuking723/agent-delivery-os)](https://github.com/pupuking723/agent-delivery-os/blob/main/LICENSE)
 
 [中文说明](./README.md)
 
 > Agent-first delivery operating system for repeatable product execution.
+
+An agent-oriented delivery operating system for turning:
+
+`idea -> spec -> implementation -> validation -> release -> feedback`
+
+into a repeatable, collaborative repository workflow.
 
 Built for three common scenarios:
 
@@ -23,6 +26,19 @@ This repository already ships with:
 - PR guardrails
 - post-merge follow-up reminders
 - example workspaces and demo flow packs
+
+## Why This Repo
+
+- it is not just a template set, but a delivery repo with built-in GitHub automation
+- it covers not only planning, but also validation, release follow-up, and iteration logging
+- it can be used directly as a master repo and then adapted into real product repositories
+
+## At A Glance
+
+- modes: `Flash Launch` / `Product Iteration` / `Legacy Maintenance`
+- automation: issue labels, kickoff comments, artifact checklists, PR guardrails, merge follow-up
+- assets: English and Chinese templates, prompt pack, playbook, demo flow pack
+- output: deterministic workspaces, traceable artifacts, and iteration-log reminders
 
 ## What It Solves
 
@@ -78,6 +94,11 @@ Sync labels:
 pnpm labels:sync -- --repo <owner/repo>
 ```
 
+If you want to see a full working example first, start here:
+
+- [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
+- [examples/demo-product-iteration/README.md](/Users/mac/Desktop/other/全栈/examples/demo-product-iteration/README.md)
+
 ## Built-in Automation
 
 This repository already includes:
@@ -100,6 +121,10 @@ This repository already includes:
   [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
 - product iteration demo pack:
   [examples/demo-product-iteration/README.md](/Users/mac/Desktop/other/全栈/examples/demo-product-iteration/README.md)
+- security disclosure:
+  [SECURITY.md](/Users/mac/Desktop/other/全栈/SECURITY.md)
+- support path:
+  [SUPPORT.md](/Users/mac/Desktop/other/全栈/SUPPORT.md)
 
 ## License
 

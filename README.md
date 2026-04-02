@@ -1,16 +1,26 @@
 # Delivery OS
 
-一套面向 Claude Code 的交付操作系统，用来把“想法 -> 规格 -> 开发 -> 验证 -> 发布 -> 反馈”变成可重复执行的流程。
+[![Release](https://img.shields.io/github/v/release/pupuking723/agent-delivery-os)](https://github.com/pupuking723/agent-delivery-os/releases/tag/v0.1.0)
+[![License](https://img.shields.io/github/license/pupuking723/agent-delivery-os)](https://github.com/pupuking723/agent-delivery-os/blob/main/LICENSE)
 
 [English README](./README.en.md)
 
 > Agent-first delivery operating system for repeatable product execution.
 
+一套面向 Claude Code 与 agent 工作流的交付操作系统，用来把：
+
+`idea -> spec -> implementation -> validation -> release -> feedback`
+
+变成可复用、可协作、可自动推进的仓库路径。
+
 适合三类场景：
 
-- 快速把想法上线验证市场
-- 持续迭代已上线产品
-- 安全维护老项目或 vibe coding 项目
+- `Flash Launch`
+  快速把想法上线验证市场
+- `Product Iteration`
+  持续迭代已上线产品
+- `Legacy Maintenance`
+  安全维护老项目或 vibe coding 项目
 
 仓库内已经自带：
 
@@ -19,6 +29,19 @@
 - PR guardrails
 - merge 后闭环提醒
 - 示例 workspace 与 demo flow pack
+
+## Why This Repo
+
+- 它不是单纯模板仓库，而是带有 GitHub 自动化的交付母版仓库
+- 它不只管“开始做”，也管“怎么验证、怎么发布、怎么回写结果”
+- 它既能给你个人使用，也能迁移到真实业务仓库里做团队协作入口
+
+## At A Glance
+
+- 模式路由：`Flash Launch` / `Product Iteration` / `Legacy Maintenance`
+- 自动化：issue labels、kickoff comment、artifact checklist、PR guardrails、merge follow-up
+- 产物：中英文模板、prompt pack、playbook、demo flow pack
+- 输出：稳定 workspace 路径、可追踪 artifact、可回写 iteration log
 
 ## 解决什么问题
 
@@ -88,6 +111,11 @@ node scripts/delivery-os/init.mjs --title "团队邀请功能" --summary "已上
 pnpm labels:sync -- --repo <owner/repo>
 ```
 
+如果你只想先看一条完整示例，直接从这里开始：
+
+- [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
+- [examples/demo-product-iteration/README.md](/Users/mac/Desktop/other/全栈/examples/demo-product-iteration/README.md)
+
 ## 推荐使用方式
 
 1. 把这个仓库作为母版仓库持续演进
@@ -100,6 +128,8 @@ pnpm labels:sync -- --repo <owner/repo>
 - PR 模板在 `.github/PULL_REQUEST_TEMPLATE.md`
 - Labels 配置在 `.github/labels.json`
 - GitHub Action 守门规则在 `.github/workflows/delivery-os-guardrails.yml`
+- 安全披露规则在 [SECURITY.md](/Users/mac/Desktop/other/全栈/SECURITY.md)
+- 使用支持入口在 [SUPPORT.md](/Users/mac/Desktop/other/全栈/SUPPORT.md)
 - 仓库初始化与发布说明在 [docs/repo/github-setup.md](/Users/mac/Desktop/other/全栈/docs/repo/github-setup.md)
 - 协作约束说明在 [docs/repo/collaboration-defaults.md](/Users/mac/Desktop/other/全栈/docs/repo/collaboration-defaults.md)
 - 端到端操作手册在 [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
