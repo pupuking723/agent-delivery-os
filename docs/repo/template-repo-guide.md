@@ -17,7 +17,8 @@
 3. clone 新仓库到本地
 4. 按你的项目实际情况补 `project-profile` 和 `system-map`
 5. 运行一键初始化命令生成项目上下文
-6. 同步 labels，检查 issue/PR 模板和 Actions 是否启用
+6. 运行 GitHub 初始化命令补 description、homepage、topics 和 labels
+7. 检查 issue/PR 模板和 Actions 是否启用
 
 ## 建仓后第一批必做项
 
@@ -71,6 +72,12 @@
 
 ```bash
 pnpm bootstrap:repo -- --project "新项目名" --repo-name "new-product-repo" --workspace-root "workspace"
+```
+
+一键初始化 GitHub 仓库元数据：
+
+```bash
+pnpm bootstrap:github -- --repo <owner/repo> --project "新项目名"
 ```
 
 同步 labels：

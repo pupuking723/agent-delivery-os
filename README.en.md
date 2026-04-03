@@ -84,6 +84,10 @@ pnpm bootstrap:repo -- --project "New Product" --repo-name "new-product-repo" --
 ```
 
 ```bash
+pnpm bootstrap:github -- --repo <owner/repo> --project "New Product"
+```
+
+```bash
 pnpm kickoff --title "Team invite flow" --summary "A live product needs role assignment and release checks"
 ```
 

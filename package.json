@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "bootstrap:github": "node scripts/github/bootstrap-repo.mjs",
     "bootstrap:repo": "node scripts/delivery-os/bootstrap-repo.mjs",
     "kickoff": "node scripts/delivery-os/init.mjs",
     "kickoff:dry": "node scripts/delivery-os/init.mjs --dry-run",

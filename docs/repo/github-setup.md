@@ -41,6 +41,20 @@ gh repo create <repo-name> --source=. --public --push
 - 打开 discussions
 - 如果准备作为母版仓库复用，打开 GitHub template repository
 
+## 推荐自动化初始化
+
+先生成项目上下文：
+
+```bash
+pnpm bootstrap:repo -- --project "<项目名>" --repo-name "<repo-name>" --workspace-root "workspace"
+```
+
+再配置 GitHub 元数据：
+
+```bash
+pnpm bootstrap:github -- --repo <owner/repo> --project "<项目名>"
+```
+
 ## 建议标签
 
 标签定义已经放在：

@@ -87,6 +87,10 @@ pnpm bootstrap:repo -- --project "新项目名" --repo-name "new-product-repo" -
 ```
 
 ```bash
+pnpm bootstrap:github -- --repo <owner/repo> --project "新项目名"
+```
+
+```bash
 pnpm kickoff --title "团队邀请功能" --summary "已上线项目，需要新增邀请弹窗、角色分配和发布检查"
 ```
 
