@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.2.0 - 2026-04-03
+
+Bootstrap and repository verification update for `agent-delivery-os`.
+
+### Included
+
+- `bootstrap:repo` for business repo local project scaffolding
+- `bootstrap:github` for repository metadata and label setup
+- `bootstrap:all` to combine local and GitHub initialization in one command
+- `doctor` command for local and optional remote repository health checks
+- template repository guide updates for the new bootstrap flow
+- package version aligned with the latest release line
+
 ## v0.1.1 - 2026-04-03
 
 Public packaging and repository health update for `agent-delivery-os`.

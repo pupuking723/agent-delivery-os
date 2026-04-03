@@ -92,6 +92,10 @@ pnpm bootstrap:github -- --repo <owner/repo> --project "New Product"
 ```
 
 ```bash
+pnpm doctor -- --repo <owner/repo>
+```
+
+```bash
 pnpm kickoff --title "Team invite flow" --summary "A live product needs role assignment and release checks"
 ```
 
@@ -105,6 +109,12 @@ Sync labels:
 
 ```bash
 pnpm labels:sync -- --repo <owner/repo>
+```
+
+Check repository health:
+
+```bash
+pnpm doctor -- --repo <owner/repo>
 ```
 
 If you want to see a full working example first, start here:

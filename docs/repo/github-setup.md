@@ -63,6 +63,12 @@ pnpm bootstrap:repo -- --project "<项目名>" --repo-name "<repo-name>" --works
 pnpm bootstrap:github -- --repo <owner/repo> --project "<项目名>"
 ```
 
+最后跑健康检查：
+
+```bash
+pnpm doctor -- --repo <owner/repo>
+```
+
 ## 建议标签
 
 标签定义已经放在：

@@ -95,6 +95,10 @@ pnpm bootstrap:github -- --repo <owner/repo> --project "新项目名"
 ```
 
 ```bash
+pnpm doctor -- --repo <owner/repo>
+```
+
+```bash
 pnpm kickoff --title "团队邀请功能" --summary "已上线项目，需要新增邀请弹窗、角色分配和发布检查"
 ```
 
@@ -123,6 +127,12 @@ node scripts/delivery-os/init.mjs --title "团队邀请功能" --summary "已上
 
 ```bash
 pnpm labels:sync -- --repo <owner/repo>
+```
+
+检查仓库健康状态：
+
+```bash
+pnpm doctor -- --repo <owner/repo>
 ```
 
 如果你只想先看一条完整示例，直接从这里开始：
