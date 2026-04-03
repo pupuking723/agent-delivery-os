@@ -13,6 +13,11 @@
 
 变成可复用、可协作、可自动推进的仓库路径。
 
+现在仓库同时提供两层入口：
+
+- `delivery-os CLI`
+- `Claude Code plugin`
+
 适合三类场景：
 
 - `Flash Launch`
@@ -40,6 +45,8 @@ pnpm health:check -- --repo <owner/repo>
 
 如果你是第一次上手，先看 [docs/quickstart.md](/Users/mac/Desktop/other/全栈/docs/quickstart.md)。
 
+如果你希望在 Claude Code 里用插件入口，见 [docs/plugin.md](/Users/mac/Desktop/other/全栈/docs/plugin.md)。
+
 ## Why This Repo
 
 - 它不是单纯模板仓库，而是带有 GitHub 自动化的交付母版仓库
@@ -64,6 +71,12 @@ pnpm health:check -- --repo <owner/repo>
 
 ## 仓库结构
 
+- `packages/core/`
+  共享交付逻辑
+- `packages/cli/`
+  `delivery-os` CLI 入口
+- `plugins/delivery-os/`
+  Claude Code 插件入口
 - `CLAUDE.md`
   Claude Code 的默认执行规则
 - `docs/delivery-os/`
@@ -125,6 +138,12 @@ pnpm health:check -- --repo <owner/repo>
 - 如果你仍然想用旧命名，检查命令也可以写成：
   `pnpm run doctor -- --repo <owner/repo>`
 
+## CLI 与插件
+
+- CLI 是稳定底座
+- Claude Code 插件是薄入口层
+- `CLI-Anything` 和 `OpenCLI` 不是默认依赖，只是可选 adapter
+
 ## 推荐使用方式
 
 1. 把这个仓库作为母版仓库持续演进
@@ -144,24 +163,23 @@ pnpm health:check -- --repo <owner/repo>
 - 模板仓库落地指南在 [docs/repo/template-repo-guide.md](/Users/mac/Desktop/other/全栈/docs/repo/template-repo-guide.md)
 - 协作约束说明在 [docs/repo/collaboration-defaults.md](/Users/mac/Desktop/other/全栈/docs/repo/collaboration-defaults.md)
 - 端到端操作手册在 [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
+- 插件说明在 [docs/plugin.md](/Users/mac/Desktop/other/全栈/docs/plugin.md)
 - 展示型 demo 流程包在 [examples/demo-product-iteration/README.md](/Users/mac/Desktop/other/全栈/examples/demo-product-iteration/README.md)
 
 ## 当前状态
 
-这是一个可用的 `v2` 版本：
+这是一个可用的 `v0.3.0` 版本：
 
-- 已有完整模板体系
-- 已有三模式工作流
-- 已有仓库级 issue/PR 入口
-- 已有 issue 驱动的 kickoff 脚本
-- 已有 labels 同步脚本、自动 kickoff 评论、artifact checklist、merge 后自动勾选产物项、iteration-log 提醒、guardrails workflow 和 workspace 示例
-- issue form 也已经支持 `项目代号` 和 `Workspace 根目录`
+- 已有完整模板体系和三模式工作流
+- 已有 `delivery-os CLI`
+- 已有 repo-local Claude Code 插件
+- 已有仓库级 issue/PR 自动化入口
+- 已有 issue 驱动的 workspace 生成、健康检查和 GitHub 元数据初始化
 
 下一阶段重点是：
 
-- 把这套规则接进真实业务仓库
-- 让 issue -> kickoff -> 文档 -> 开发 -> 发布 形成默认路径
-- 继续把反馈、监控、发布自动化接进来
+- 把这套 CLI + 插件架构接进真实业务仓库
+- 继续补业务仓库级 adapter 和更多真实样本
 
 ## 许可证
 

@@ -1,0 +1,39 @@
+{
+  "name": "delivery-os",
+  "version": "0.3.0",
+  "description": "Claude Code plugin wrapper for Delivery OS workflow commands.",
+  "author": {
+    "name": "pupuking723",
+    "email": "pupuking723@users.noreply.github.com",
+    "url": "https://github.com/pupuking723"
+  },
+  "homepage": "https://github.com/pupuking723/agent-delivery-os/blob/main/docs/playbook.md",
+  "repository": "https://github.com/pupuking723/agent-delivery-os",
+  "license": "MIT",
+  "keywords": [
+    "delivery-os",
+    "claude-code",
+    "ai-agents"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Delivery OS",
+    "shortDescription": "Claude Code entrypoint for Delivery OS workflows.",
+    "longDescription": "Thin Claude Code plugin that routes init, feature, issue, and health-check actions to the Delivery OS CLI.",
+    "developerName": "pupuking723",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/pupuking723/agent-delivery-os",
+    "privacyPolicyURL": "https://github.com/pupuking723/agent-delivery-os/blob/main/README.md",
+    "termsOfServiceURL": "https://github.com/pupuking723/agent-delivery-os/blob/main/LICENSE",
+    "defaultPrompt": [
+      "Initialize this repo with Delivery OS.",
+      "Create a Delivery OS workspace for this feature.",
+      "Run a Delivery OS health check."
+    ],
+    "brandColor": "#19E68C"
+  }
+}

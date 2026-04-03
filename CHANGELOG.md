@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.3.0 - 2026-04-03
+
+CLI and plugin architecture update for `agent-delivery-os`.
+
+### Included
+
+- `packages/core` for shared workflow logic
+- `packages/cli` for a reusable `delivery-os` command surface
+- backward-compatible top-level script wrappers
+- repo-local Claude Code plugin scaffold under `plugins/delivery-os`
+- plugin marketplace manifest under `.agents/plugins/marketplace.json`
+- plugin usage guide and CLI/plugin architecture documentation
+
 ## v0.2.1 - 2026-04-03
 
 Usability and onboarding update for `agent-delivery-os`.

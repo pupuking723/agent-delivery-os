@@ -1,17 +1,20 @@
 {
   "name": "delivery-os",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
+  "bin": {
+    "delivery-os": "./packages/cli/bin/delivery-os.mjs"
+  },
   "scripts": {
-    "bootstrap:all": "node scripts/bootstrap-all.mjs",
-    "bootstrap:github": "node scripts/github/bootstrap-repo.mjs",
-    "bootstrap:repo": "node scripts/delivery-os/bootstrap-repo.mjs",
-    "doctor": "node scripts/doctor.mjs",
-    "health:check": "node scripts/doctor.mjs",
-    "kickoff": "node scripts/delivery-os/init.mjs",
-    "kickoff:dry": "node scripts/delivery-os/init.mjs --dry-run",
-    "kickoff:issue": "node scripts/delivery-os/from-issue.mjs",
-    "labels:sync": "node scripts/github/sync-labels.mjs"
+    "bootstrap:all": "node packages/cli/bin/delivery-os.mjs init",
+    "bootstrap:github": "node packages/cli/bin/delivery-os.mjs bootstrap-github",
+    "bootstrap:repo": "node packages/cli/bin/delivery-os.mjs bootstrap-repo",
+    "doctor": "node packages/cli/bin/delivery-os.mjs check",
+    "health:check": "node packages/cli/bin/delivery-os.mjs check",
+    "kickoff": "node packages/cli/bin/delivery-os.mjs feature",
+    "kickoff:dry": "node packages/cli/bin/delivery-os.mjs feature --dry-run",
+    "kickoff:issue": "node packages/cli/bin/delivery-os.mjs issue",
+    "labels:sync": "node packages/cli/bin/delivery-os.mjs labels"
   }
 }

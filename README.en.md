@@ -13,6 +13,11 @@ An agent-oriented delivery operating system for turning:
 
 into a repeatable, collaborative repository workflow.
 
+This repository now exposes two entry layers:
+
+- `delivery-os CLI`
+- `Claude Code plugin`
+
 Built for three common scenarios:
 
 - launching a new idea quickly
@@ -36,6 +41,8 @@ pnpm health:check -- --repo <owner/repo>
 ```
 
 If this is your first time here, start with [docs/quickstart.en.md](/Users/mac/Desktop/other/全栈/docs/quickstart.en.md).
+
+If you want the Claude Code plugin path, see [docs/plugin.md](/Users/mac/Desktop/other/全栈/docs/plugin.md).
 
 ## Why This Repo
 
@@ -61,6 +68,12 @@ If this is your first time here, start with [docs/quickstart.en.md](/Users/mac/D
 
 ## Repository Layout
 
+- `packages/core/`
+  shared delivery logic
+- `packages/cli/`
+  `delivery-os` CLI entrypoint
+- `plugins/delivery-os/`
+  Claude Code plugin entrypoint
 - `CLAUDE.md`
   execution rules for Claude Code
 - `docs/delivery-os/`
@@ -118,6 +131,12 @@ If you want to see a full working example first, start here:
 - if you still want the old command name:
   `pnpm run doctor -- --repo <owner/repo>`
 
+## CLI And Plugin
+
+- the CLI is the stable core
+- the Claude Code plugin is a thin entry layer
+- `CLI-Anything` and `OpenCLI` are optional adapters, not required dependencies
+
 ## Built-in Automation
 
 This repository already includes:
@@ -138,6 +157,8 @@ This repository already includes:
   [docs/repo/template-repo-guide.md](/Users/mac/Desktop/other/全栈/docs/repo/template-repo-guide.md)
 - collaboration defaults:
   [docs/repo/collaboration-defaults.md](/Users/mac/Desktop/other/全栈/docs/repo/collaboration-defaults.md)
+- plugin guide:
+  [docs/plugin.md](/Users/mac/Desktop/other/全栈/docs/plugin.md)
 - end-to-end playbook:
   [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
 - product iteration demo pack:

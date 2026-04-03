@@ -1,0 +1,9 @@
+{
+  "name": "@agent-delivery-os/cli",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "delivery-os": "./bin/delivery-os.mjs"
+  }
+}
