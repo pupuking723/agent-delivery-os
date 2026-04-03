@@ -43,6 +43,14 @@ gh repo create <repo-name> --source=. --public --push
 
 ## 推荐自动化初始化
 
+优先用总入口：
+
+```bash
+pnpm bootstrap:all -- --project "<项目名>" --repo-name "<repo-name>" --repo <owner/repo>
+```
+
+如果你要拆开执行，也可以：
+
 先生成项目上下文：
 
 ```bash

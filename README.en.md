@@ -80,6 +80,10 @@ This repository already ships with:
 4. Generate a workspace
 
 ```bash
+pnpm bootstrap:all -- --project "New Product" --repo-name "new-product-repo" --repo <owner/repo>
+```
+
+```bash
 pnpm bootstrap:repo -- --project "New Product" --repo-name "new-product-repo" --workspace-root "workspace"
 ```
 

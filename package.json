@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "bootstrap:all": "node scripts/bootstrap-all.mjs",
     "bootstrap:github": "node scripts/github/bootstrap-repo.mjs",
     "bootstrap:repo": "node scripts/delivery-os/bootstrap-repo.mjs",
     "kickoff": "node scripts/delivery-os/init.mjs",

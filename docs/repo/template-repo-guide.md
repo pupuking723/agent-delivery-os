@@ -16,9 +16,8 @@
 2. 创建新的业务仓库
 3. clone 新仓库到本地
 4. 按你的项目实际情况补 `project-profile` 和 `system-map`
-5. 运行一键初始化命令生成项目上下文
-6. 运行 GitHub 初始化命令补 description、homepage、topics 和 labels
-7. 检查 issue/PR 模板和 Actions 是否启用
+5. 先跑总入口命令把本地骨架和 GitHub 元数据一起补齐
+6. 检查 issue/PR 模板和 Actions 是否启用
 
 ## 建仓后第一批必做项
 
@@ -68,11 +67,21 @@
 
 ## 推荐命令
 
+一条命令跑完整个第一层初始化：
+
+```bash
+pnpm bootstrap:all -- --project "新项目名" --repo-name "new-product-repo" --repo <owner/repo>
+```
+
+如果你只想跑本地骨架：
+
 一键初始化业务仓库：
 
 ```bash
 pnpm bootstrap:repo -- --project "新项目名" --repo-name "new-product-repo" --workspace-root "workspace"
 ```
+
+如果你只想跑 GitHub 元数据：
 
 一键初始化 GitHub 仓库元数据：
 
