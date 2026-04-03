@@ -79,7 +79,12 @@
 
 1. 先读 [docs/delivery-os/README.md](/Users/mac/Desktop/other/全栈/docs/delivery-os/README.md)
 2. 再读 [CLAUDE.md](/Users/mac/Desktop/other/全栈/CLAUDE.md)
-3. 用 kickoff 脚本生成当前需求的最小文档包
+3. 如果这是新业务仓库，先跑一遍 bootstrap
+4. 再用 kickoff 脚本生成当前需求的最小文档包
+
+```bash
+pnpm bootstrap:repo -- --project "新项目名" --repo-name "new-product-repo" --workspace-root "workspace"
+```
 
 ```bash
 pnpm kickoff --title "团队邀请功能" --summary "已上线项目，需要新增邀请弹窗、角色分配和发布检查"

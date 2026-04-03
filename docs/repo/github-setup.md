@@ -55,6 +55,7 @@ pnpm labels:sync -- --repo <owner/repo>
 
 ## 发布前检查
 
+- `pnpm bootstrap:repo -- --project "<项目名>" --repo-name "<repo-name>"` 可生成 `docs/project/` 起始包
 - `README.md` 已说明仓库定位
 - `CONTRIBUTING.md` 已说明协作规则
 - `CLAUDE.md` 已说明 Claude Code 执行规则

@@ -76,7 +76,12 @@ This repository already ships with:
 
 1. Read [docs/delivery-os/README.md](/Users/mac/Desktop/other/全栈/docs/delivery-os/README.md)
 2. Read [CLAUDE.md](/Users/mac/Desktop/other/全栈/CLAUDE.md)
-3. Generate a workspace
+3. If this is a fresh business repo, bootstrap project context first
+4. Generate a workspace
+
+```bash
+pnpm bootstrap:repo -- --project "New Product" --repo-name "new-product-repo" --workspace-root "workspace"
+```
 
 ```bash
 pnpm kickoff --title "Team invite flow" --summary "A live product needs role assignment and release checks"
