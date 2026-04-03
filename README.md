@@ -1,6 +1,6 @@
 # Delivery OS
 
-[![Release](https://img.shields.io/github/v/release/pupuking723/agent-delivery-os)](https://github.com/pupuking723/agent-delivery-os/releases/tag/v0.1.0)
+[![Release](https://img.shields.io/github/v/release/pupuking723/agent-delivery-os)](https://github.com/pupuking723/agent-delivery-os/releases/latest)
 [![License](https://img.shields.io/github/license/pupuking723/agent-delivery-os)](https://github.com/pupuking723/agent-delivery-os/blob/main/LICENSE)
 
 [English README](./README.en.md)
@@ -115,6 +115,7 @@ pnpm labels:sync -- --repo <owner/repo>
 
 - [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
 - [examples/demo-product-iteration/README.md](/Users/mac/Desktop/other/全栈/examples/demo-product-iteration/README.md)
+- [docs/repo/template-repo-guide.md](/Users/mac/Desktop/other/全栈/docs/repo/template-repo-guide.md)
 
 ## 推荐使用方式
 
@@ -132,6 +133,7 @@ pnpm labels:sync -- --repo <owner/repo>
 - 使用支持入口在 [SUPPORT.md](/Users/mac/Desktop/other/全栈/SUPPORT.md)
 - 协作行为准则在 [CODE_OF_CONDUCT.md](/Users/mac/Desktop/other/全栈/CODE_OF_CONDUCT.md)
 - 仓库初始化与发布说明在 [docs/repo/github-setup.md](/Users/mac/Desktop/other/全栈/docs/repo/github-setup.md)
+- 模板仓库落地指南在 [docs/repo/template-repo-guide.md](/Users/mac/Desktop/other/全栈/docs/repo/template-repo-guide.md)
 - 协作约束说明在 [docs/repo/collaboration-defaults.md](/Users/mac/Desktop/other/全栈/docs/repo/collaboration-defaults.md)
 - 端到端操作手册在 [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
 - 展示型 demo 流程包在 [examples/demo-product-iteration/README.md](/Users/mac/Desktop/other/全栈/examples/demo-product-iteration/README.md)

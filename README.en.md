@@ -1,6 +1,6 @@
 # Delivery OS
 
-[![Release](https://img.shields.io/github/v/release/pupuking723/agent-delivery-os)](https://github.com/pupuking723/agent-delivery-os/releases/tag/v0.1.0)
+[![Release](https://img.shields.io/github/v/release/pupuking723/agent-delivery-os)](https://github.com/pupuking723/agent-delivery-os/releases/latest)
 [![License](https://img.shields.io/github/license/pupuking723/agent-delivery-os)](https://github.com/pupuking723/agent-delivery-os/blob/main/LICENSE)
 
 [中文说明](./README.md)
@@ -98,6 +98,7 @@ If you want to see a full working example first, start here:
 
 - [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
 - [examples/demo-product-iteration/README.md](/Users/mac/Desktop/other/全栈/examples/demo-product-iteration/README.md)
+- [docs/repo/template-repo-guide.md](/Users/mac/Desktop/other/全栈/docs/repo/template-repo-guide.md)
 
 ## Built-in Automation
 
@@ -115,6 +116,8 @@ This repository already includes:
 
 - setup and repository wiring:
   [docs/repo/github-setup.md](/Users/mac/Desktop/other/全栈/docs/repo/github-setup.md)
+- template repository guide:
+  [docs/repo/template-repo-guide.md](/Users/mac/Desktop/other/全栈/docs/repo/template-repo-guide.md)
 - collaboration defaults:
   [docs/repo/collaboration-defaults.md](/Users/mac/Desktop/other/全栈/docs/repo/collaboration-defaults.md)
 - end-to-end playbook:

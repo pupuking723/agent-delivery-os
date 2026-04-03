@@ -39,6 +39,7 @@ gh repo create <repo-name> --source=. --public --push
 - 启用 PR 模板
 - 打开 branch protection
 - 打开 discussions
+- 如果准备作为母版仓库复用，打开 GitHub template repository
 
 ## 建议标签
 
@@ -71,6 +72,7 @@ pnpm labels:sync -- --repo <owner/repo>
 - issue 驱动的 workspace 默认路径为 `workspace/<issue-number>-<slug>`
 - [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md) 已提供端到端使用范例
 - `examples/` 已提供 workspace 示例
+- [docs/repo/template-repo-guide.md](/Users/mac/Desktop/other/全栈/docs/repo/template-repo-guide.md) 已提供模板仓库落地说明
 
 ## 许可证建议
 
