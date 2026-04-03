@@ -125,6 +125,8 @@ This repository already includes:
   [SECURITY.md](/Users/mac/Desktop/other/全栈/SECURITY.md)
 - support path:
   [SUPPORT.md](/Users/mac/Desktop/other/全栈/SUPPORT.md)
+- code of conduct:
+  [CODE_OF_CONDUCT.md](/Users/mac/Desktop/other/全栈/CODE_OF_CONDUCT.md)
 
 ## License
 

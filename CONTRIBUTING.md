@@ -1,5 +1,11 @@
 # Contributing
 
+开始前，建议先读：
+
+- [CODE_OF_CONDUCT.md](/Users/mac/Desktop/other/全栈/CODE_OF_CONDUCT.md)
+- [SUPPORT.md](/Users/mac/Desktop/other/全栈/SUPPORT.md)
+- [SECURITY.md](/Users/mac/Desktop/other/全栈/SECURITY.md)
+
 ## 目标
 
 这个仓库不是普通模板仓库，而是一个持续演进的交付系统。
@@ -35,3 +41,4 @@
 - 用 issue 模板发起变更
 - PR 必须说明模式、影响范围、验证方式
 - 对于流程级改动，至少给一个真实使用场景
+- 对协作行为有争议时，以 [CODE_OF_CONDUCT.md](/Users/mac/Desktop/other/全栈/CODE_OF_CONDUCT.md) 为准

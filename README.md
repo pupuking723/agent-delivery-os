@@ -130,6 +130,7 @@ pnpm labels:sync -- --repo <owner/repo>
 - GitHub Action 守门规则在 `.github/workflows/delivery-os-guardrails.yml`
 - 安全披露规则在 [SECURITY.md](/Users/mac/Desktop/other/全栈/SECURITY.md)
 - 使用支持入口在 [SUPPORT.md](/Users/mac/Desktop/other/全栈/SUPPORT.md)
+- 协作行为准则在 [CODE_OF_CONDUCT.md](/Users/mac/Desktop/other/全栈/CODE_OF_CONDUCT.md)
 - 仓库初始化与发布说明在 [docs/repo/github-setup.md](/Users/mac/Desktop/other/全栈/docs/repo/github-setup.md)
 - 协作约束说明在 [docs/repo/collaboration-defaults.md](/Users/mac/Desktop/other/全栈/docs/repo/collaboration-defaults.md)
 - 端到端操作手册在 [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
