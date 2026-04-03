@@ -41,6 +41,7 @@ const REQUIRED_SCRIPTS = [
   'bootstrap:all',
   'bootstrap:repo',
   'bootstrap:github',
+  'health:check',
   'kickoff',
   'kickoff:issue',
   'labels:sync',

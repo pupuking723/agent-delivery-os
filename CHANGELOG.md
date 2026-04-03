@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.1 - 2026-04-03
+
+Usability and onboarding update for `agent-delivery-os`.
+
+### Included
+
+- beginner-friendly `docs/quickstart.md`
+- beginner-friendly `docs/quickstart.en.md`
+- README simplification around 3 primary commands
+- `health:check` alias to avoid confusion with pnpm's built-in `doctor` command
+- doctor validation updated to include `health:check`
+
 ## v0.2.0 - 2026-04-03
 
 Bootstrap and repository verification update for `agent-delivery-os`.

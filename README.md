@@ -30,6 +30,16 @@
 - merge 后闭环提醒
 - 示例 workspace 与 demo flow pack
 
+## 先只记住 3 个命令
+
+```bash
+pnpm bootstrap:all -- --project "新项目名" --repo-name "new-product-repo" --repo <owner/repo>
+pnpm kickoff --title "需求标题" --summary "需求说明"
+pnpm health:check -- --repo <owner/repo>
+```
+
+如果你是第一次上手，先看 [docs/quickstart.md](/Users/mac/Desktop/other/全栈/docs/quickstart.md)。
+
 ## Why This Repo
 
 - 它不是单纯模板仓库，而是带有 GitHub 自动化的交付母版仓库
@@ -77,69 +87,43 @@
 
 ## 快速开始
 
-1. 先读 [docs/delivery-os/README.md](/Users/mac/Desktop/other/全栈/docs/delivery-os/README.md)
-2. 再读 [CLAUDE.md](/Users/mac/Desktop/other/全栈/CLAUDE.md)
-3. 如果这是新业务仓库，先跑一遍 bootstrap
-4. 再用 kickoff 脚本生成当前需求的最小文档包
+第一次用，按这个顺序就够了：
 
 ```bash
 pnpm bootstrap:all -- --project "新项目名" --repo-name "new-product-repo" --repo <owner/repo>
 ```
 
 ```bash
-pnpm bootstrap:repo -- --project "新项目名" --repo-name "new-product-repo" --workspace-root "workspace"
-```
-
-```bash
-pnpm bootstrap:github -- --repo <owner/repo> --project "新项目名"
-```
-
-```bash
-pnpm doctor -- --repo <owner/repo>
-```
-
-```bash
 pnpm kickoff --title "团队邀请功能" --summary "已上线项目，需要新增邀请弹窗、角色分配和发布检查"
 ```
 
-从 GitHub issue 直接生成 workspace：
-
 ```bash
-pnpm kickoff:issue -- --repo <owner/repo> --issue <number>
+pnpm health:check -- --repo <owner/repo>
 ```
 
-如果 issue 已经带上模式标签，仓库会自动评论这条命令。
-同时也会自动生成一条按模式整理的 artifact checklist 评论。
-PR 合并后，仓库还会自动提醒补 `iteration-log.md`。
-PR 本身也应显式填写 `Workspace` 和 `Artifact paths`，把代码变更和交付产物绑定起来。
-如果 `Artifact paths` 填得准确，issue checklist 会在 PR 合并后自动勾掉对应产物项。
-默认 workspace 路径会稳定落到 `workspace/<issue-number>-<slug>`。
-如果 issue form 里填写了 `Workspace 根目录`，默认路径会变成 `<workspace-root>/<issue-number>-<slug>`。
-如果你刚从 template 仓库创建了一个新业务仓库，优先跑 `pnpm bootstrap:all`。
-
-如果不装 `pnpm`，也可以直接用：
-
-```bash
-node scripts/delivery-os/init.mjs --title "团队邀请功能" --summary "已上线项目，需要新增邀请弹窗、角色分配和发布检查"
-```
-
-同步 GitHub labels：
-
-```bash
-pnpm labels:sync -- --repo <owner/repo>
-```
-
-检查仓库健康状态：
-
-```bash
-pnpm doctor -- --repo <owner/repo>
-```
+更短的新手说明在 [docs/quickstart.md](/Users/mac/Desktop/other/全栈/docs/quickstart.md)。
 
 如果你只想先看一条完整示例，直接从这里开始：
 
+- [docs/quickstart.md](/Users/mac/Desktop/other/全栈/docs/quickstart.md)
 - [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
 - [examples/demo-product-iteration/README.md](/Users/mac/Desktop/other/全栈/examples/demo-product-iteration/README.md)
 - [docs/repo/template-repo-guide.md](/Users/mac/Desktop/other/全栈/docs/repo/template-repo-guide.md)
+
+## 高级命令
+
+只有在你已经熟悉基本流程后，再看这些：
+
+- 只初始化本地业务仓库骨架：
+  `pnpm bootstrap:repo -- --project "新项目名" --repo-name "new-product-repo" --workspace-root "workspace"`
+- 只初始化 GitHub 元数据：
+  `pnpm bootstrap:github -- --repo <owner/repo> --project "新项目名"`
+- 从 GitHub issue 生成 workspace：
+  `pnpm kickoff:issue -- --repo <owner/repo> --issue <number>`
+- 同步 GitHub labels：
+  `pnpm labels:sync -- --repo <owner/repo>`
+- 如果你仍然想用旧命名，检查命令也可以写成：
+  `pnpm run doctor -- --repo <owner/repo>`
 
 ## 推荐使用方式
 

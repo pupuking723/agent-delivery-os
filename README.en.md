@@ -27,6 +27,16 @@ This repository already ships with:
 - post-merge follow-up reminders
 - example workspaces and demo flow packs
 
+## Only Remember 3 Commands
+
+```bash
+pnpm bootstrap:all -- --project "New Product" --repo-name "new-product-repo" --repo <owner/repo>
+pnpm kickoff --title "Feature title" --summary "Feature summary"
+pnpm health:check -- --repo <owner/repo>
+```
+
+If this is your first time here, start with [docs/quickstart.en.md](/Users/mac/Desktop/other/全栈/docs/quickstart.en.md).
+
 ## Why This Repo
 
 - it is not just a template set, but a delivery repo with built-in GitHub automation
@@ -74,54 +84,39 @@ This repository already ships with:
 
 ## Quick Start
 
-1. Read [docs/delivery-os/README.md](/Users/mac/Desktop/other/全栈/docs/delivery-os/README.md)
-2. Read [CLAUDE.md](/Users/mac/Desktop/other/全栈/CLAUDE.md)
-3. If this is a fresh business repo, bootstrap project context first
-4. Generate a workspace
+If you are new to this repository, this is enough:
 
 ```bash
 pnpm bootstrap:all -- --project "New Product" --repo-name "new-product-repo" --repo <owner/repo>
 ```
 
 ```bash
-pnpm bootstrap:repo -- --project "New Product" --repo-name "new-product-repo" --workspace-root "workspace"
-```
-
-```bash
-pnpm bootstrap:github -- --repo <owner/repo> --project "New Product"
-```
-
-```bash
-pnpm doctor -- --repo <owner/repo>
-```
-
-```bash
 pnpm kickoff --title "Team invite flow" --summary "A live product needs role assignment and release checks"
 ```
 
-Generate directly from a GitHub issue:
-
 ```bash
-pnpm kickoff:issue -- --repo <owner/repo> --issue <number>
-```
-
-Sync labels:
-
-```bash
-pnpm labels:sync -- --repo <owner/repo>
-```
-
-Check repository health:
-
-```bash
-pnpm doctor -- --repo <owner/repo>
+pnpm health:check -- --repo <owner/repo>
 ```
 
 If you want to see a full working example first, start here:
 
+- [docs/quickstart.en.md](/Users/mac/Desktop/other/全栈/docs/quickstart.en.md)
 - [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
 - [examples/demo-product-iteration/README.md](/Users/mac/Desktop/other/全栈/examples/demo-product-iteration/README.md)
 - [docs/repo/template-repo-guide.md](/Users/mac/Desktop/other/全栈/docs/repo/template-repo-guide.md)
+
+## Advanced Commands
+
+- local business repo scaffold only:
+  `pnpm bootstrap:repo -- --project "New Product" --repo-name "new-product-repo" --workspace-root "workspace"`
+- GitHub metadata only:
+  `pnpm bootstrap:github -- --repo <owner/repo> --project "New Product"`
+- workspace from a GitHub issue:
+  `pnpm kickoff:issue -- --repo <owner/repo> --issue <number>`
+- sync labels:
+  `pnpm labels:sync -- --repo <owner/repo>`
+- if you still want the old command name:
+  `pnpm run doctor -- --repo <owner/repo>`
 
 ## Built-in Automation
 

@@ -18,7 +18,7 @@
 4. 按你的项目实际情况补 `project-profile` 和 `system-map`
 5. 先跑总入口命令把本地骨架和 GitHub 元数据一起补齐
 6. 检查 issue/PR 模板和 Actions 是否启用
-7. 跑一次 `doctor`，确认仓库本地和远端都已接好
+7. 跑一次 `health:check`，确认仓库本地和远端都已接好
 
 ## 建仓后第一批必做项
 
@@ -77,7 +77,7 @@ pnpm bootstrap:all -- --project "新项目名" --repo-name "new-product-repo" --
 初始化后做健康检查：
 
 ```bash
-pnpm doctor -- --repo <owner/repo>
+pnpm health:check -- --repo <owner/repo>
 ```
 
 如果你只想跑本地骨架：

@@ -1,6 +1,6 @@
 {
   "name": "delivery-os",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,6 +8,7 @@
     "bootstrap:github": "node scripts/github/bootstrap-repo.mjs",
     "bootstrap:repo": "node scripts/delivery-os/bootstrap-repo.mjs",
     "doctor": "node scripts/doctor.mjs",
+    "health:check": "node scripts/doctor.mjs",
     "kickoff": "node scripts/delivery-os/init.mjs",
     "kickoff:dry": "node scripts/delivery-os/init.mjs --dry-run",
     "kickoff:issue": "node scripts/delivery-os/from-issue.mjs",
