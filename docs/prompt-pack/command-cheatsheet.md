@@ -3,11 +3,18 @@
 ## 1. 需求与任务管理
 
 ```bash
+pnpm guide
+pnpm start:flow --title "Workflow title" --summary "What you want to build"
+pnpm recipes
+pnpm recipes opencli --title "Workflow title"
 gh issue list
 gh issue view <issue-id>
 gh project item-list <project-id>
 gh pr status
 gh pr checks
+pnpm health:check -- --repo <owner/repo> --check-toolchain
+pnpm health:check -- --repo <owner/repo> --check-toolchain all
+pnpm health:check -- --workspace <workspace-path> --skip-remote
 ```
 
 ## 2. 开发环境与代码验证

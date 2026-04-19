@@ -46,7 +46,13 @@ export function slugify(input) {
 }
 
 export function runProcess(command, args, options = {}) {
-  const { dryRun = false, inherit = false, allowFailure = false } = options
+  const {
+    dryRun = false,
+    inherit = false,
+    allowFailure = false,
+    cwd,
+    env,
+  } = options
   const printable = [command, ...args].join(' ')
 
   if (dryRun) {
@@ -57,17 +63,22 @@ export function runProcess(command, args, options = {}) {
   const result = spawnSync(command, args, {
     stdio: inherit ? 'inherit' : 'pipe',
     encoding: 'utf-8',
+    cwd,
+    env,
   })
 
-  if (result.status !== 0 && !allowFailure) {
-    const message = result.stderr || result.stdout || `${command} exited with ${result.status}`
+  const status = result.status ?? (result.error ? 1 : 0)
+
+  if (status !== 0 && !allowFailure) {
+    const message = result.stderr || result.stdout || result.error?.message || `${command} exited with ${status}`
     throw new Error(message)
   }
 
   return {
-    status: result.status ?? 0,
+    status,
     stdout: result.stdout?.trim() || '',
     stderr: result.stderr?.trim() || '',
+    error: result.error?.message || '',
   }
 }
 

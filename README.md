@@ -13,6 +13,10 @@
 
 变成可复用、可协作、可自动推进的仓库路径。
 
+它的初衷不是把一切都重新发明成一个大而全 CLI，
+而是把现有开源项目、官方 CLI、网页工具、桌面工具接到同一套 agent 编排里，
+让用户能更稳定地做出各种产品、自动化和有意思的实验。
+
 现在仓库同时提供两层入口：
 
 - `delivery-os CLI`
@@ -35,12 +39,28 @@
 - merge 后闭环提醒
 - 示例 workspace 与 demo flow pack
 
-## 先只记住 3 个命令
+## 先记住这 5 个入口
 
 ```bash
+pnpm guide
+pnpm start:flow --title "需求标题" --summary "你想做什么"
 pnpm bootstrap:all -- --project "新项目名" --repo-name "new-product-repo" --repo <owner/repo>
 pnpm kickoff --title "需求标题" --summary "需求说明"
 pnpm health:check -- --repo <owner/repo>
+```
+
+如果你不清楚顺序，先运行：
+
+```bash
+pnpm guide
+```
+
+它会直接在终端里告诉你“先初始化仓库，再为需求生成 workspace，最后做检查”。
+
+如果你只想用最简单入口直接开始，可以运行：
+
+```bash
+pnpm start:flow --title "需求标题" --summary "你想做什么"
 ```
 
 如果你是第一次上手，先看 [docs/quickstart.md](/Users/mac/Desktop/other/全栈/docs/quickstart.md)。
@@ -52,6 +72,8 @@ pnpm health:check -- --repo <owner/repo>
 - 它不是单纯模板仓库，而是带有 GitHub 自动化的交付母版仓库
 - 它不只管“开始做”，也管“怎么验证、怎么发布、怎么回写结果”
 - 它既能给你个人使用，也能迁移到真实业务仓库里做团队协作入口
+- 它强调“编排已有能力”，而不是重复造轮子：
+  优先官方 CLI，其次 `opencli`，最后 `CLI-Anything`
 
 ## At A Glance
 
@@ -103,6 +125,10 @@ pnpm health:check -- --repo <owner/repo>
 第一次用，按这个顺序就够了：
 
 ```bash
+pnpm guide
+```
+
+```bash
 pnpm bootstrap:all -- --project "新项目名" --repo-name "new-product-repo" --repo <owner/repo>
 ```
 
@@ -115,6 +141,18 @@ pnpm health:check -- --repo <owner/repo>
 ```
 
 更短的新手说明在 [docs/quickstart.md](/Users/mac/Desktop/other/全栈/docs/quickstart.md)。
+
+如果你想先看“这套系统能怎样把各种工具拼起来”，先看：
+
+- [docs/recipes/README.md](/Users/mac/Desktop/other/delivery-os/docs/recipes/README.md)
+- [docs/recipes-zh/README.md](/Users/mac/Desktop/other/delivery-os/docs/recipes-zh/README.md)
+- [examples/workspace-interface-automation/README.md](/Users/mac/Desktop/other/delivery-os/examples/workspace-interface-automation/README.md)
+
+如果你已经知道要走哪条路径，也可以直接起手：
+
+```bash
+pnpm recipes opencli --title "需求标题"
+```
 
 如果你只想先看一条完整示例，直接从这里开始：
 
@@ -143,6 +181,13 @@ pnpm health:check -- --repo <owner/repo>
 - CLI 是稳定底座
 - Claude Code 插件是薄入口层
 - `CLI-Anything` 和 `OpenCLI` 不是默认依赖，只是可选 adapter
+
+更准确地说：
+
+- Delivery OS 负责“编排”
+- 官方 CLI 负责成熟系统接入
+- `OpenCLI` 负责网站 / 桌面工具 / 外部系统接入
+- `CLI-Anything` 负责给缺 CLI 的开源项目补可复用命令面
 
 ## 推荐使用方式
 

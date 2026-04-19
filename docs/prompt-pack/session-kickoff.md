@@ -22,10 +22,13 @@
 - release-checklist
 - system-map
 - iteration-log
+- tool-interface-map
 
-5. 如果文档缺失，先生成最小必需文档，再进入实施。
+5. 如果任务依赖外部工具、网站、桌面应用或非标准接口，判断是否需要补 `tool-interface-map`。
 
-6. 进入统一状态机：
+6. 如果文档缺失，先生成最小必需文档，再进入实施。
+
+7. 进入统一状态机：
 - Intake
 - Route
 - Spec
@@ -35,19 +38,24 @@
 - Release
 - Learn
 
-7. 在每个阶段都输出：
+8. 在每个阶段都输出：
 - 当前阶段
 - 当前产物
 - 下一步
 - 风险
 
-8. 如果是 Flash Launch，优先速度，但不能省略回滚和最小验证。
+9. 如果是 Flash Launch，优先速度，但不能省略回滚和最小验证。
 
-9. 如果是 Product Iteration，优先完整验收、发布控制和反馈回流。
+10. 如果是 Product Iteration，优先完整验收、发布控制和反馈回流。
 
-10. 如果是 Legacy Maintenance，先补 project-profile 和 system-map，再决定是否编码。
+11. 如果是 Legacy Maintenance，先补 project-profile 和 system-map，再决定是否编码。
 
-11. 最终输出必须包含：
+12. 如果任务涉及工具接入，额外输出：
+- 接口路由
+- 优先接口选择依据
+- 可执行命令面
+
+13. 最终输出必须包含：
 - 模式
 - 已补齐文档
 - 实施计划

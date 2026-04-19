@@ -11,10 +11,14 @@
     "bootstrap:github": "node packages/cli/bin/delivery-os.mjs bootstrap-github",
     "bootstrap:repo": "node packages/cli/bin/delivery-os.mjs bootstrap-repo",
     "doctor": "node packages/cli/bin/delivery-os.mjs check",
+    "guide": "node packages/cli/bin/delivery-os.mjs guide",
     "health:check": "node packages/cli/bin/delivery-os.mjs check",
     "kickoff": "node packages/cli/bin/delivery-os.mjs feature",
     "kickoff:dry": "node packages/cli/bin/delivery-os.mjs feature --dry-run",
     "kickoff:issue": "node packages/cli/bin/delivery-os.mjs issue",
-    "labels:sync": "node packages/cli/bin/delivery-os.mjs labels"
+    "labels:sync": "node packages/cli/bin/delivery-os.mjs labels",
+    "recipes": "node packages/cli/bin/delivery-os.mjs recipes",
+    "start:flow": "node packages/cli/bin/delivery-os.mjs start",
+    "test": "node --test test/*.test.mjs"
   }
 }

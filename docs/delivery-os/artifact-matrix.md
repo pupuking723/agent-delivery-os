@@ -13,6 +13,7 @@
 - `project-profile`
 - `system-map`
 - `iteration-log`
+- `tool-interface-map`
 
 ## Flash Launch
 
@@ -36,6 +37,11 @@
 - `system-map`
   除非已经有老代码基础
 
+按需补充：
+
+- `tool-interface-map`
+  当这次任务需要编排官方 CLI、网页工具、桌面工具或缺 CLI 的开源项目时补
+
 ## Product Iteration
 
 最小必需：
@@ -54,6 +60,8 @@
   当需求来源还很模糊时先写
 - `system-map`
   当涉及高风险模块或跨系统改动时补
+- `tool-interface-map`
+  当这轮需求需要接多个外部系统或工具链时补
 
 ## Legacy Maintenance
 
@@ -73,6 +81,8 @@
   当涉及明显 UI/UX 变更时补
 - `iteration-log`
   上线或修复后必须记录
+- `tool-interface-map`
+  当维护动作依赖旧后台、桌面工具、脚本或没有成熟 CLI 的系统时补
 
 ## 文档深度规则
 

@@ -16,6 +16,43 @@ export const ARTIFACTS = {
 }
 
 export const PROJECT_ARTIFACTS = ['project-profile', 'system-map', 'iteration-log']
+export const OPTIONAL_ARTIFACTS = ['tool-interface-map']
+export const INTERFACE_MAP_KEYWORDS = [
+  'opencli',
+  'cli-anything',
+  'website',
+  'web app',
+  'browser',
+  'dashboard',
+  'admin panel',
+  'admin console',
+  'electron',
+  'desktop app',
+  'desktop tool',
+  'external tool',
+  'external system',
+  'source-available',
+  'open source',
+  'internal tool',
+  'internal admin',
+  'automation',
+  'adapter',
+  'integration',
+  '网站',
+  '网页',
+  '浏览器',
+  '后台',
+  '管理后台',
+  '桌面应用',
+  '桌面工具',
+  '外部工具',
+  '外部系统',
+  '源码可用',
+  '开源项目',
+  '自动化',
+  '适配器',
+  '集成',
+]
 
 export const MODE_KEYWORDS = {
   legacy: ['legacy', 'old project', 'handoff', 'vibe', 'maintenance', '接手', '老项目', '历史代码', '文档缺失', '维护'],
@@ -86,9 +123,12 @@ export const REQUIRED_SCRIPTS = [
   'bootstrap:all',
   'bootstrap:repo',
   'bootstrap:github',
+  'guide',
   'health:check',
   'kickoff',
   'kickoff:issue',
   'labels:sync',
+  'recipes',
+  'start:flow',
   'doctor',
 ]

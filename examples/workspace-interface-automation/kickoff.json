@@ -1,0 +1,16 @@
+{
+  "title": "Workspace interface automation example",
+  "summary": "Demonstrates how to combine official CLIs, opencli, and an optional generated adapter in one request.",
+  "project": "delivery-os",
+  "repo": "pupuking723/agent-delivery-os",
+  "issue": "",
+  "mode": "product",
+  "modeLabel": "Product Iteration",
+  "reason": "explicit example workspace for interface-driven delivery",
+  "language": "en",
+  "outputDir": "examples/workspace-interface-automation",
+  "optionalArtifacts": [
+    "tool-interface-map"
+  ],
+  "createdAt": "2026-04-04T00:20:00.000Z"
+}

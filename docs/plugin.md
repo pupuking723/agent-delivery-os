@@ -51,6 +51,13 @@ CLI 更适合做：
 - `CLI-Anything`：可选的 non-CLI system adapter
 - `OpenCLI`：可选的网站 / 桌面工具 adapter
 
+核心原则不是“把所有东西都塞进 Delivery OS”。
+而是：
+
+- 成熟系统直接用官方 CLI
+- 网站和桌面工具交给 `OpenCLI`
+- 缺 CLI 但值得复用的开源项目，再交给 `CLI-Anything`
+
 也就是说：
 
 没有这两个工具，Delivery OS 也能正常工作。

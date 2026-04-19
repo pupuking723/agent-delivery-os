@@ -1,7 +1,7 @@
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { cwd } from 'node:process'
 import { join, resolve } from 'node:path'
-import { ARTIFACTS, MODES, MODE_KEYWORDS, MODE_LABELS, MODE_MAP, ROOT } from './config.mjs'
+import { ARTIFACTS, INTERFACE_MAP_KEYWORDS, MODES, MODE_KEYWORDS, MODE_LABELS, MODE_MAP, OPTIONAL_ARTIFACTS, ROOT } from './config.mjs'
 import { runProcess, slugify } from './utils.mjs'
 
 export function detectMode(text) {
@@ -25,7 +25,7 @@ function templateRoot(lang) {
   return join(ROOT, lang === 'en' ? 'docs/templates' : 'docs/templates-zh')
 }
 
-function buildManifest({ title, mode, reason, lang, summary }) {
+function buildManifest({ title, mode, reason, lang, summary, artifacts }) {
   return `# Delivery Kickoff
 
 - Title: ${title}
@@ -36,11 +36,11 @@ function buildManifest({ title, mode, reason, lang, summary }) {
 
 ## Generated Artifacts
 
-${ARTIFACTS[mode].map(name => `- ${name}.md`).join('\n')}
+${artifacts.map(name => `- ${name}.md`).join('\n')}
 `
 }
 
-function buildMetadata({ title, summary, project, repo, issue, mode, reason, lang, outDir }) {
+function buildMetadata({ title, summary, project, repo, issue, mode, reason, lang, outDir, optionalArtifacts, optionalArtifactReasons }) {
   return {
     title,
     summary,
@@ -52,6 +52,8 @@ function buildMetadata({ title, summary, project, repo, issue, mode, reason, lan
     reason,
     language: lang,
     outputDir: outDir,
+    optionalArtifacts,
+    optionalArtifactReasons,
     createdAt: new Date().toISOString(),
   }
 }
@@ -111,8 +113,9 @@ function ensureOutputDir(outDir, force) {
 
 function copyArtifacts({ lang, mode, outDir, dryRun }) {
   const sourceRoot = templateRoot(lang)
+  const artifactNames = Array.from(new Set(mode))
   const files = []
-  for (const artifact of ARTIFACTS[mode]) {
+  for (const artifact of artifactNames) {
     const source = join(sourceRoot, `${artifact}.md`)
     const target = join(outDir, `${artifact}.md`)
     files.push(target)
@@ -120,6 +123,40 @@ function copyArtifacts({ lang, mode, outDir, dryRun }) {
       cpSync(source, target)
   }
   return files
+}
+
+function detectInterfaceMapReason(text) {
+  const normalized = text.toLowerCase()
+  for (const keyword of INTERFACE_MAP_KEYWORDS) {
+    if (normalized.includes(keyword.toLowerCase()))
+      return `matched interface keyword: ${keyword}`
+  }
+  return ''
+}
+
+function resolveOptionalArtifacts(args, detectionText) {
+  const extras = []
+  const reasons = {}
+
+  if (args['without-interface-map'])
+    return { optionalArtifacts: extras, optionalArtifactReasons: reasons }
+
+  if (args['with-interface-map']) {
+    extras.push('tool-interface-map')
+    reasons['tool-interface-map'] = 'explicit flag'
+    return { optionalArtifacts: extras.filter(name => OPTIONAL_ARTIFACTS.includes(name)), optionalArtifactReasons: reasons }
+  }
+
+  const interfaceMapReason = detectInterfaceMapReason(detectionText)
+  if (interfaceMapReason) {
+    extras.push('tool-interface-map')
+    reasons['tool-interface-map'] = interfaceMapReason
+  }
+
+  return {
+    optionalArtifacts: extras.filter(name => OPTIONAL_ARTIFACTS.includes(name)),
+    optionalArtifactReasons: reasons,
+  }
 }
 
 export function createWorkspace(args) {
@@ -131,20 +168,23 @@ export function createWorkspace(args) {
   const lang = args.lang === 'en' ? 'en' : 'zh'
   const dryRun = Boolean(args['dry-run'])
   const force = Boolean(args.force)
+  const detectionText = args['detection-text'] || `${title}\n${summary}`
   const route = args.mode && args.mode !== 'auto'
     ? { mode: args.mode, reason: args.reason || 'explicit mode override' }
-    : detectMode(`${title}\n${summary}`)
+    : detectMode(detectionText)
 
   if (!ARTIFACTS[route.mode])
     throw new Error(`Unsupported mode: ${route.mode}`)
 
+  const { optionalArtifacts, optionalArtifactReasons } = resolveOptionalArtifacts(args, detectionText)
+  const artifactNames = [...ARTIFACTS[route.mode], ...optionalArtifacts]
   const slug = args.slug || slugify(title)
   const outDir = resolve(args.out || join(ROOT, 'workspace', slug))
 
   if (!dryRun)
     ensureOutputDir(outDir, force)
 
-  const files = copyArtifacts({ lang, mode: route.mode, outDir, dryRun })
+  const files = copyArtifacts({ lang, mode: artifactNames, outDir, dryRun })
   const manifestPath = join(outDir, 'README.md')
   const metadataPath = join(outDir, 'kickoff.json')
   const nextStepsPath = join(outDir, 'next-steps.md')
@@ -160,8 +200,10 @@ export function createWorkspace(args) {
       reason: route.reason,
       lang,
       outDir,
+      optionalArtifacts,
+      optionalArtifactReasons,
     })
-    writeFileSync(manifestPath, buildManifest({ title, mode: route.mode, reason: route.reason, lang, summary }))
+    writeFileSync(manifestPath, buildManifest({ title, mode: route.mode, reason: route.reason, lang, summary, artifacts: artifactNames }))
     writeFileSync(metadataPath, `${JSON.stringify(metadata, null, 2)}\n`)
     writeFileSync(nextStepsPath, buildNextSteps({ mode: route.mode, title, outDir }))
   }
@@ -170,6 +212,8 @@ export function createWorkspace(args) {
     route,
     outDir,
     workingDirectory: cwd(),
+    optionalArtifacts,
+    optionalArtifactReasons,
     files: [manifestPath, metadataPath, nextStepsPath, ...files],
   }
 }
@@ -179,6 +223,13 @@ export function printWorkspaceResult(result) {
   console.log(`Reason: ${result.route.reason}`)
   console.log(`Output: ${result.outDir}`)
   console.log(`Working directory: ${result.workingDirectory}`)
+  if (result.optionalArtifacts.length > 0) {
+    console.log('Optional artifacts:')
+    for (const artifact of result.optionalArtifacts) {
+      const reason = result.optionalArtifactReasons?.[artifact]
+      console.log(`- ${artifact}${reason ? ` (${reason})` : ''}`)
+    }
+  }
   console.log('Files:')
   for (const file of result.files)
     console.log(`- ${file}`)
@@ -263,6 +314,7 @@ export function createWorkspaceFromIssue(args) {
     ...args,
     title: issue.title,
     summary,
+    'detection-text': `${issue.title}\n${issue.body || ''}`,
     mode: route.mode,
     reason: route.reason,
     project,

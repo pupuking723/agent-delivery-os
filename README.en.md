@@ -13,6 +13,9 @@ An agent-oriented delivery operating system for turning:
 
 into a repeatable, collaborative repository workflow.
 
+The original goal is not to replace everything with one giant CLI.
+It is to orchestrate open-source projects, official CLIs, websites, and desktop tools through one agent-friendly workflow so people can build useful products, automations, and experiments faster.
+
 This repository now exposes two entry layers:
 
 - `delivery-os CLI`
@@ -32,12 +35,28 @@ This repository already ships with:
 - post-merge follow-up reminders
 - example workspaces and demo flow packs
 
-## Only Remember 3 Commands
+## Start With These 5 Entry Points
 
 ```bash
+pnpm guide
+pnpm start:flow --title "Workflow title" --summary "What you want to build"
 pnpm bootstrap:all -- --project "New Product" --repo-name "new-product-repo" --repo <owner/repo>
 pnpm kickoff --title "Feature title" --summary "Feature summary"
 pnpm health:check -- --repo <owner/repo>
+```
+
+If you are not sure about the order, run:
+
+```bash
+pnpm guide
+```
+
+It prints the exact terminal-first sequence: initialize the repository, create a workspace for a request, then run validation.
+
+If you want the lowest-friction entrypoint, run:
+
+```bash
+pnpm start:flow --title "Workflow title" --summary "What you want to build"
 ```
 
 If this is your first time here, start with [docs/quickstart.en.md](/Users/mac/Desktop/other/全栈/docs/quickstart.en.md).
@@ -49,6 +68,8 @@ If you want the Claude Code plugin path, see [docs/plugin.md](/Users/mac/Desktop
 - it is not just a template set, but a delivery repo with built-in GitHub automation
 - it covers not only planning, but also validation, release follow-up, and iteration logging
 - it can be used directly as a master repo and then adapted into real product repositories
+- it focuses on orchestrating existing capabilities instead of rebuilding them:
+  official CLI first, then `opencli`, then `CLI-Anything`
 
 ## At A Glance
 
@@ -100,6 +121,10 @@ If you want the Claude Code plugin path, see [docs/plugin.md](/Users/mac/Desktop
 If you are new to this repository, this is enough:
 
 ```bash
+pnpm guide
+```
+
+```bash
 pnpm bootstrap:all -- --project "New Product" --repo-name "new-product-repo" --repo <owner/repo>
 ```
 
@@ -114,9 +139,17 @@ pnpm health:check -- --repo <owner/repo>
 If you want to see a full working example first, start here:
 
 - [docs/quickstart.en.md](/Users/mac/Desktop/other/全栈/docs/quickstart.en.md)
+- [docs/recipes/README.md](/Users/mac/Desktop/other/delivery-os/docs/recipes/README.md)
 - [docs/playbook.md](/Users/mac/Desktop/other/全栈/docs/playbook.md)
+- [examples/workspace-interface-automation/README.md](/Users/mac/Desktop/other/delivery-os/examples/workspace-interface-automation/README.md)
 - [examples/demo-product-iteration/README.md](/Users/mac/Desktop/other/全栈/examples/demo-product-iteration/README.md)
 - [docs/repo/template-repo-guide.md](/Users/mac/Desktop/other/全栈/docs/repo/template-repo-guide.md)
+
+If you already know the interface path, you can scaffold directly:
+
+```bash
+pnpm recipes opencli --title "Workflow title"
+```
 
 ## Advanced Commands
 
@@ -136,6 +169,13 @@ If you want to see a full working example first, start here:
 - the CLI is the stable core
 - the Claude Code plugin is a thin entry layer
 - `CLI-Anything` and `OpenCLI` are optional adapters, not required dependencies
+
+More precisely:
+
+- Delivery OS handles orchestration
+- official CLIs handle mature systems
+- `OpenCLI` handles websites, desktop tools, and external systems
+- `CLI-Anything` turns source-available tools without good CLIs into reusable command surfaces
 
 ## Built-in Automation
 

@@ -9,6 +9,7 @@
 - `implementation-plan.md`: 实现计划
 - `task-breakdown.md`: 任务拆解
 - `release-checklist.md`: 发布检查清单
+- `tool-interface-map.md`: 外部工具、网页、桌面应用和开源项目的接口路由文档
 
 ## 推荐使用顺序
 
@@ -16,7 +17,8 @@
 2. 再补 `design-spec.md`
 3. 设计确认后写 `implementation-plan.md`
 4. 落地执行时拆成 `task-breakdown.md`
-5. 上线前填写 `release-checklist.md`
+5. 如果任务依赖外部系统或工具链，补 `tool-interface-map.md`
+6. 上线前填写 `release-checklist.md`
 
 ## 使用建议
 

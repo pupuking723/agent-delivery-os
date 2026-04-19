@@ -20,6 +20,7 @@
 - 风险越高，文档和验证越重
 - 上线不是终点，必须把反馈带回下一轮迭代
 - 优先让 Claude Code 按固定入口和固定产物执行
+- 当任务依赖外部工具链时，要显式记录接口路由，而不是靠临时记忆
 
 ## 组成
 
@@ -55,5 +56,9 @@
   [iteration-log.md](/Users/mac/Desktop/other/全栈/docs/templates-zh/iteration-log.md)
 - 会话总控 prompt：
   [session-kickoff.md](/Users/mac/Desktop/other/全栈/docs/prompt-pack/session-kickoff.md)
+- 工具接入地图：
+  [tool-interface-map.md](/Users/mac/Desktop/other/全栈/docs/templates-zh/tool-interface-map.md)
+- recipes 中文入口：
+  [docs/recipes-zh/README.md](/Users/mac/Desktop/other/delivery-os/docs/recipes-zh/README.md)
 - 仓库 kickoff 脚本：
   [init.mjs](/Users/mac/Desktop/other/全栈/scripts/delivery-os/init.mjs)
